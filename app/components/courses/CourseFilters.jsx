@@ -1,5 +1,5 @@
-import { SearchIcon } from '@heroicons/react/solid'
-import { FilterIcon } from '@heroicons/react/outline'
+import { SearchIcon } from '@heroicons/react/solid';
+import { FilterIcon } from '@heroicons/react/outline';
 
 export default function CourseFilters() {
   return (
@@ -22,7 +22,9 @@ export default function CourseFilters() {
           className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm leading-5 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
           defaultValue=""
         >
-          <option value="" disabled>Filter by category</option>
+          <option value="" disabled>
+            Filter by category
+          </option>
           <option>Programming</option>
           <option>Design</option>
           <option>Marketing</option>
@@ -36,7 +38,9 @@ export default function CourseFilters() {
           className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm leading-5 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
           defaultValue=""
         >
-          <option value="" disabled>Filter by level</option>
+          <option value="" disabled>
+            Filter by level
+          </option>
           <option>Beginner</option>
           <option>Intermediate</option>
           <option>Advanced</option>
@@ -50,7 +54,9 @@ export default function CourseFilters() {
           className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm leading-5 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
           defaultValue=""
         >
-          <option value="" disabled>Filter by type</option>
+          <option value="" disabled>
+            Filter by type
+          </option>
           <option>On-demand</option>
           <option>Live</option>
           <option>Hybrid</option>
@@ -64,7 +70,9 @@ export default function CourseFilters() {
           className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm leading-5 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
           defaultValue=""
         >
-          <option value="" disabled>Filter by price</option>
+          <option value="" disabled>
+            Filter by price
+          </option>
           <option>Free</option>
           <option>Under $50</option>
           <option>Under $100</option>

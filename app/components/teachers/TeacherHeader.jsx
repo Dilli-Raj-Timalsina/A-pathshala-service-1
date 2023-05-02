@@ -8,9 +8,9 @@ const TeacherHeader = ({ teacher }) => {
         <h1 className="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-4">
           {teacher.name}
         </h1>
-        <div className="text-lg leading-8 font-medium text-gray-500 mb-8">
+        <p className="text-lg leading-8 font-medium text-gray-500 mb-8">
           {teacher.bio}
-        </div>
+        </p>
       </div>
       <div className="lg:w-1/2 lg:pl-8 flex items-center justify-center">
         <div className="rounded-full overflow-hidden w-48 h-48">

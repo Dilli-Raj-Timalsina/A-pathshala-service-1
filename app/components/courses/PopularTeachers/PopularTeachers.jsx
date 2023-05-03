@@ -15,7 +15,10 @@ const PopularTeachers = () => {
   return (
     <>
       {' '}
-      <h2 className="font-bold text-3xl text-black m-2 ms-12">
+      <h2
+        id="popular_teachers"
+        className="font-bold text-3xl m-10 text-black  ms-12"
+      >
         Popular Teachers{' '}
       </h2>
       <div className="grid md:grid-cols-3 gap-2 lg:grid-cols-5 min-w-full">

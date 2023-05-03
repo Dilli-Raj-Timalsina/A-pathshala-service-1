@@ -1,10 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Source_Sans_Pro } from 'next/font/google';
+
+// If loading a variable font, you don't need to specify the font weight
+const ssp = Source_Sans_Pro({
+  subsets: ['latin'],
+  weight: '600',
+});
+const headingFont = ssp.className;
+
 const PopularTeacherCard = ({ teacher }) => {
   console.log(teacher.image);
   return (
-    <Link className="max-w-sm  group" href={'/teachers'}>
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-300">
+    <Link className=" group" href={'/teachers'}>
+      <div
+        className={`bg-white shadow-lg rounded-lg overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-300`}
+      >
         <div className="flex justify-around  items-center">
           <img
             src={teacher.image}
@@ -24,8 +35,10 @@ const PopularTeacherCard = ({ teacher }) => {
           </div>
         </div>
         <div className="py-4 px-6">
-          <h2 className="text-2xl font-bold mb-2">{teacher.name}</h2>
-          <p className="text-gray-600 text-sm line-clamp-4 mb-4">
+          <h2 className={`text-xl ${ssp.className} mb-2`}>{teacher.name}</h2>
+          <p
+            className={headingFont + ' text-gray-600 text-sm line-clamp-4 mb-4'}
+          >
             {teacher.bio}
           </p>
           <div className="flex justify-between items-center">

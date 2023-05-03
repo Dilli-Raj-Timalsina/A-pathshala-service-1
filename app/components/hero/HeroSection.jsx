@@ -19,19 +19,24 @@ const Hero = () => {
             href="#"
             className="bg-white hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center"
           >
-            <Image src={'play.svg'} alt="Play" width={20} height={20}></Image>
-            Watch video
+            <Link href={'#popular_teachers'}>Explore</Link>
           </Link>
           <Link
             href="/signup"
-            className=" hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center"
+            className=" hover:bg-gray-200 bg-cta-blue-gradient text-white font-bold py-2 px-4 rounded-lg inline-flex items-center"
           >
-            Sign In
+            Join for Free
           </Link>
         </div>
       </div>
       <div className="lg:w-1/2">
-        <Image src="/hero.jpg" alt="Hero image" width={800} height={600} />
+        <Image
+          src="/hero.jpg"
+          alt="Hero image"
+          width={800}
+          height={600}
+          className="rounded-lg shadow-xl"
+        />
       </div>
     </div>
   );

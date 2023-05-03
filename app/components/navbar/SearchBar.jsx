@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-
 const SearchBar = () => {
   const [query, setQuery] = useState('');
 
@@ -18,33 +17,31 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="inline-flex items-center border-2 border-rose-200 justify-center overflow-hidden rounded-md ps-2 ">
-      <div className="">
-        <input
-          type="text"
-          className="border-0 outline-none bg-transparent"
-          placeholder="Search Course"
-          value={query}
-          onChange={handleInputChange}
-          list="options"
+    <div className="relative">
+      <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
+        <img
+          src="/search.svg"
+          className="h-5 w-5 text-gray-400"
+          aria-hidden="true"
         />
-        <datalist id="options">
-          {options
-            .filter((option) =>
-              option.toLowerCase().includes(query.toLowerCase())
-            )
-            .map((option, index) => (
-              <option key={index} value={option} />
-            ))}
-        </datalist>
-      </div>
-      <svg
-        className="w-6 h-6 border-0"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"></path>
-      </svg>
+      </span>
+      <input
+        type="text"
+        className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 sm:text-sm"
+        placeholder="Search..."
+        value={query}
+        onChange={handleInputChange}
+        list="options"
+      />
+      <datalist id="options">
+        {options
+          .filter((option) =>
+            option.toLowerCase().includes(query.toLowerCase())
+          )
+          .map((option, index) => (
+            <option key={index} value={option} />
+          ))}
+      </datalist>
     </div>
   );
 };

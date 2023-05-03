@@ -3,7 +3,7 @@ import React from 'react';
 function Icon() {
   return (
     <svg
-      width="300"
+      width="220"
       height="51.732"
       className="css-1j8o68f"
       viewBox="0 0 369.655 37.335"

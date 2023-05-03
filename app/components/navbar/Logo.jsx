@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import Icon from './Icon';
+import JustLogo from '../data/Logo';
 function Logo() {
   return (
-    <div className="flex-shrink-0 flex items-center">
+    <div className="z-10">
       <Link href="/">
+        {/* <JustLogo /> */}
         <Icon />
       </Link>
     </div>

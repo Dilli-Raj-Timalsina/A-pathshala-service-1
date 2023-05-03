@@ -3,7 +3,7 @@ function NavLink({ href, label }) {
   return (
     <Link
       href={href}
-      className="text-blue-500 hover:text-gray-900 px-2 rounded-md text-sm font-medium"
+      className="text-blue-500 hover:text-gray-900 px-2 rounded-md text-sm font-bold"
     >
       {label}
     </Link>

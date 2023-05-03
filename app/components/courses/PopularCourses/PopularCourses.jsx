@@ -14,20 +14,12 @@ const PopularCourses = () => {
 
   return (
     <>
-      <h2 className="font-bold text-3xl text-black m-2 ms-12">
+      <h2 className="font-bold text-3xl text-black m-10 ms-12">
         Popular Courses{' '}
       </h2>
       <div className="grid md:grid-cols-3 gap-6 mx-6 lg:grid-cols-4 xl:grid-cols-5">
         {PopularCourses.map((course, ind) => (
-          <CourseCard
-            key={ind}
-            title={course.title}
-            duration={course.duration}
-            url={course.url}
-            price={course.price}
-            image={course.image}
-            level={course.level}
-          />
+          <CourseCard key={ind} course={course} />
         ))}
       </div>
     </>

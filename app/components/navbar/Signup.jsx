@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { React, useState } from 'react';
 import { useRouter } from 'next/navigation';
 const Signup = () => {
   const [password, setPassword] = useState('');
@@ -24,7 +24,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0  w-screen  bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed top-0 left-0  w-screen overflow-auto bg-gray-800 bg-opacity-50 flex items-center justify-center">
       <div className="bg-white rounded-lg   p-4">
         <div className="flex items-center gap-2 justify-between">
           <h2 className="text-2xl items-center flex text-center font-bold mb-4">

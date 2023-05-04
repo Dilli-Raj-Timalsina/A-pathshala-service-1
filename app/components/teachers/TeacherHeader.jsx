@@ -1,4 +1,5 @@
 // 'use client';
+import React from 'react';
 const TeacherHeader = ({ teacher }) => {
   return (
     <div className=" rounded-lg  p-8 md:p-12 lg:flex lg:flex-col lg:items-center">

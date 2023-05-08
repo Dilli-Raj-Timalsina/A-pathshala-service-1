@@ -2,7 +2,7 @@ import React from 'react';
 import NavLink from './NavLink';
 const NavItems = () => {
   return (
-    <div className="flex justify-evenly">
+    <div className=" justify-between sm:hidden lg:flex  items-center">
       <NavLink href={'/teachers'} label={'Teachers'} />
       <NavLink href={'/courses'} label={'Courses'} />
       <NavLink href={'/blogs'} label={'Blog'} />

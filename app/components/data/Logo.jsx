@@ -27,7 +27,7 @@ function JustLogo() {
         width="50"
         height="50"
         viewBox="136.5443115234375 72.64500427246094 163.60855102539062 101.22599792480469"
-        class="css-1j8o68f"
+        className="css-1j8o68f"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g xmlns="http://www.w3.org/2000/svg" fill="#ffb26b">

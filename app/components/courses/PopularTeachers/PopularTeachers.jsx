@@ -1,7 +1,8 @@
 'use client';
 import dummyData from '../../data/DummyData';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import PopularTeacherCard from './PopularTeacherCard';
+import { SkeletonCard } from '../../spinners/Skeleton';
 const PopularTeachers = () => {
   const [popTeacher, setPopTeacher] = useState([]);
   useEffect(() => {
@@ -23,7 +24,9 @@ const PopularTeachers = () => {
       </h2>
       <div className="grid md:grid-cols-3 gap-2 lg:grid-cols-5 min-w-full">
         {popTeacher.map((teacher, ind) => (
-          <PopularTeacherCard key={ind} teacher={teacher} />
+          <Suspense key={ind} fallback={<SkeletonCard />}>
+            <PopularTeacherCard key={ind} teacher={teacher} />
+          </Suspense>
         ))}
       </div>
     </>

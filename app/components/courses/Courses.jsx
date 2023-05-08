@@ -117,9 +117,9 @@ import CourseData from '../data/CourseData';
 // export { CoursesProvider, Courses };
 import { useState } from 'react';
 import CourseFilter from './CourseFilters';
-// import CourseList from './CourseList';
 import CourseList from '../teachers/CourseList';
 import CourseItemsByLevel from './CourseItemsByLevels';
+import CategorySidebar from './CategorySideBar';
 const Courses = () => {
   const COURSES = CourseData;
   const [filteredCourses, setFilteredCourses] = useState(COURSES);
@@ -143,14 +143,19 @@ const Courses = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <CourseFilter onFilterChange={handleFilterChange} />
-      <CourseList courses={filteredCourses} gridColumns={4} />
-      <h2 className=" flex justify-center items-center text-3xl m-6 font-bold">
-        Explore Courses Levelwise
-      </h2>
-      <CourseItemsByLevel />
-    </div>
+    <>
+      <div className="flex ">
+        <CategorySidebar />
+        <div className="container mx-auto">
+          <CourseFilter onFilterChange={handleFilterChange} />
+          <CourseList courses={filteredCourses} gridColumns={4} />
+          <h2 className=" flex justify-center items-center text-3xl m-6 font-bold">
+            Explore Courses Levelwise
+          </h2>
+          <CourseItemsByLevel />
+        </div>
+      </div>
+    </>
   );
 };
 

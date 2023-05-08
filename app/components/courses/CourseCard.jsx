@@ -34,7 +34,7 @@ const CourseCard = ({ course }) => {
         </div>
         <div className="flex justify-center gap-4">
           <Link
-            href={course.url ? course.url : '/courses'}
+            href={'/courses/1'}
             className="inline-block whitespace-nowrap bg-green-500 hover:bg-green-600 text-white text-sm font-semibold py-2 px-4 mt-4 rounded transition duration-200"
           >
             View Course

@@ -13,8 +13,8 @@ const HeroSection = () => {
         >
           <defs>
             <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#F2F2F2"></stop>
-              <stop offset="100%" stop-color="#FFFFFF"></stop>
+              <stop offset="0%" stopColor="#F2F2F2"></stop>
+              <stop offset="100%" stopColor="#FFFFFF"></stop>
             </linearGradient>
           </defs>
           <circle cx="25" cy="25" r="20" fill="url(#grad)" />

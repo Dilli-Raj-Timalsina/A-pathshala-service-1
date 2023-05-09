@@ -129,7 +129,7 @@ const Login2 = () => {
           </button>
         </div>
         <div className="text-gray-700 mb-4">
-          Don't have an account?{' '}
+          Do not have an account?
           <Link href="/signup" className="text-green-500 hover:text-green-700">
             Sign Up here
           </Link>

@@ -10,9 +10,9 @@ const ssp = Source_Sans_Pro({
 const headingFont = ssp.className;
 
 const PopularTeacherCard = ({ teacher }) => {
-  console.log(teacher.image);
+  // console.log(teacher.image);
   return (
-    <Link className=" group" href={'/teachers'}>
+    <Link className=" group" href={`/teachers/${teacher.id}`}>
       <div
         className={`bg-white shadow-lg rounded-lg overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-300`}
       >
@@ -42,12 +42,12 @@ const PopularTeacherCard = ({ teacher }) => {
             {teacher.bio}
           </p>
           <div className="flex justify-between items-center">
-            <Link
-              href={`/teachers/${teacher.id}`}
+            <button
+              //
               className="bg-yellow-400 text-white py-2 px-4 rounded-full hover:bg-yellow-600 transition duration-300 ease-in-out"
             >
               View Profile
-            </Link>
+            </button>
           </div>
         </div>
       </div>

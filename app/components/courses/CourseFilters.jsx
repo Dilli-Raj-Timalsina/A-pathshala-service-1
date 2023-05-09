@@ -104,13 +104,7 @@
 'use client';
 import { useState } from 'react';
 import { useDebounce } from 'use-debounce';
-const CATEGORIES = [
-  'Business',
-  'Technology',
-  'Creative Arts',
-  'Health and Wellness',
-  'Personal Development',
-];
+const CATEGORIES = ['Primary', 'Secondary', '+2', 'Bachelors'];
 
 const CourseFilter = ({ onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -174,7 +168,7 @@ const Categories = ({ categories, onCategoryClick }) => {
   return categories.map((category, val) => (
     <button
       key={val}
-      className="bg-gray-200 rounded-full py-2 px-4 text-gray-700 font-bold mr-2 mb-2"
+      className="bg-gray-200 m-2 rounded-full py-2 px-4 text-gray-700 font-bold mr-2 mb-2"
       onClick={() => onCategoryClick(category)}
     >
       {category}

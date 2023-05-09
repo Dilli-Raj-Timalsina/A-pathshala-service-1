@@ -3,14 +3,7 @@ import { useState, React } from 'react';
 const SearchBar = () => {
   const [query, setQuery] = useState('');
 
-  const options = [
-    'Mathematics',
-    'Physics',
-    'Chemistry',
-    'Biology',
-    'Computer Science',
-    'Statistics',
-  ];
+  const options = ['Secondary', '+2', 'Bachelors'];
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);

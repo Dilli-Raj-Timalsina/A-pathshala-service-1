@@ -38,6 +38,8 @@ module.exports = {
         'testimonial-gradient':
           'linear-gradient(to bottom, rgba(235,233,249,1) 0%,rgba(216,208,239,1) 50%,rgba(206,199,236,1) 51%,rgba(193,191,234,1) 100%)',
         'form-gradient': 'linear-gradient(to right, #ffefba, #ffffff);',
+        'sidebar-gradient':
+          'linear-gradient(90deg, #fbfcff 0%, #e4d4f0 44%, #ffffff 100%',
       },
       colors: {
         secondary: '#2E8B57',

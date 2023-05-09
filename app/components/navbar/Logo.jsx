@@ -1,12 +1,17 @@
 import Link from 'next/link';
 import Icon from './Icon';
 import JustLogo from '../data/Logo';
+
 function Logo() {
   return (
     <div className="z-10">
       <Link href="/">
-        {/* <JustLogo /> */}
-        <Icon />
+        <div className="flex md:hidden">
+          <JustLogo />
+        </div>
+        <div className="hidden md:flex">
+          <Icon />
+        </div>
       </Link>
     </div>
   );

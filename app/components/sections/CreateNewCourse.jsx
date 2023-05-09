@@ -2,7 +2,6 @@
 import { courseContext } from '@/app/become-teacher/create-course/page';
 import React, { useContext, useState } from 'react';
 import BounceSpinners from '../spinners/BounceSpinners';
-import axios from 'axios';
 function CreateNewCourse({ setNext }) {
   const { setCourseId } = useContext(courseContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -48,37 +47,37 @@ function CreateNewCourse({ setNext }) {
     formData.append('binary', course.binary);
     formData.append('requirements', course.requirements);
     console.log(...formData);
-    try {
-      const res = await axios.post(
-        'https://a-pathshala-service-2.onrender.com/api/v1/course/createCourse',
-        formData
-      );
-      console.log(await res.json());
-      if (res.ok) {
-        setIsSubmitted(true);
-        setIsSubmitting(false);
-        setCourseId(res?.id);
-        // alert('Course created successfully!');
-        setNext(true);
-        setCourse({
-          title: '',
-          subtitle: '',
-          requirements: [],
-          description: '',
-          price: '',
-          discount: '',
-          language: '',
-          binary: '',
-        });
-      } else {
-        // setIsSubmitted(true);
-        setIsSubmitting(false);
-      }
-    } catch (error) {
-      setIsSubmitting(false);
+    // try {
+    //   const res = await axios.post(
+    //     'https://a-pathshala-service-2.onrender.com/api/v1/course/createCourse',
+    //     formData
+    //   );
+    //   console.log(await res.json());
+    //   if (!res.ok) {
+    setIsSubmitted(true);
+    setIsSubmitting(false);
+    // setCourseId(res?.id);
+    // alert('Course created successfully!');
+    setNext(true);
+    setCourse({
+      title: '',
+      subtitle: '',
+      requirements: [],
+      description: '',
+      price: '',
+      discount: '',
+      language: '',
+      binary: '',
+    });
+    //   } else {
+    //     // setIsSubmitted(true);
+    //     setIsSubmitting(false);
+    //   }
+    // } catch (error) {
+    //   setIsSubmitting(false);
 
-      console.log(error);
-    }
+    //   console.log(error);
+    // }
   };
 
   return (

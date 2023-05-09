@@ -1,3 +1,10 @@
+export const metadata = {
+  title: 'A+ Pathshala',
+  description: 'This Platform Empowers Individual Teachers ',
+  icons: {
+    icon: '/icon.svg',
+  },
+};
 import PopularCourses from './components/courses/PopularCourses/PopularCourses';
 import PopularTeachers from './components/courses/PopularTeachers/PopularTeachers';
 import Hero from './components/hero/HeroSection';

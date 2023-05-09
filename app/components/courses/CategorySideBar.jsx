@@ -56,7 +56,7 @@ const CategorySidebar = ({ setIsClosed }) => {
                   {category.subcategories.map((subcategory) => (
                     <li key={subcategory.id} className="mb-2">
                       <Link
-                        className="text-gray-400 hover:text-white text-md md:text-lg lg:text-xl"
+                        className="hover:bg-gray-200 hover:rounded-md px-6 transition-colors duration-100 focus:outline-none focus:bg-white text-md md:text-lg lg:text-xl"
                         href={`/categories/${category.id}/${subcategory.id}`}
                       >
                         {subcategory.name}

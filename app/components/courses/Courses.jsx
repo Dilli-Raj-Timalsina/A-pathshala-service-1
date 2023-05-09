@@ -154,7 +154,7 @@ const Courses = () => {
         {isClosed ? (
           // <button onClick={handleOpen} className="block">
           <svg
-            className="w-8 h-8 ms-3 mt-3 hover:cursor-pointer"
+            className="w-8 h-8 ms-3 mt-3 me-3 hover:cursor-pointer"
             onClick={handleOpen}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

@@ -102,7 +102,7 @@ const Login2 = () => {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0  bg-gray-800 bg-opacity-50 flex items-center justify-center">
       <div className="bg-white  min-w-fit sm:w-1/2 md:w-1/2 lg:w-1/3 rounded-lg p-4">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold mb-4">Login</h2>

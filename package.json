@@ -17,6 +17,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "framer-motion": "^10.12.8",
     "nanoid": "^4.0.2",
     "next": "13.3.1",
     "next-auth": "^4.22.1",

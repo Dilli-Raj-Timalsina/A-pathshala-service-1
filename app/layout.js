@@ -1,6 +1,7 @@
 'use client';
 import Navbar from './components/navbar/Navbar';
 import './globals.css';
+// import { Metamedata } from 'next';
 import { Source_Sans_Pro } from 'next/font/google';
 // import { registerLicense } from '@syncfusion/ej2-base';
 // registerLicense(
@@ -17,7 +18,7 @@ import { createContext, useContext, useState } from 'react';
 // If loading a variable font, you don't need to specify the font weight
 const ssp = Source_Sans_Pro({
   subsets: ['latin'],
-  weight: '900',
+  weight: '400',
 });
 // const headingFont = ssp.className;
 export const userContext = createContext({});

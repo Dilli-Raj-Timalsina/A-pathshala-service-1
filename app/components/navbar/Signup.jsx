@@ -62,8 +62,8 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -109,7 +109,11 @@ const Signup = () => {
         throw new Error('Something Wend Wrong / signup failed');
       }
     } catch (error) {
+      setLoading(false);
+
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -134,7 +138,8 @@ const Signup = () => {
   const isPasswordValid = () => {
     // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
 
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{8,}$/;
+    const passwordRegex =
+      /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,16}$/;
     return passwordRegex.test(password);
   };
 
@@ -171,7 +176,7 @@ const Signup = () => {
             Log in here
           </Link>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="font-light">
           <div className="mb-4">
             <label
               className="block text-gray-700 font-bold mb-2"
@@ -230,10 +235,13 @@ const Signup = () => {
               onChange={handlePasswordChange}
             />
             {password && !isPasswordValid() && (
-              <span className="text-red-500 mt-1">
-                Password must be at least 8 characters long and contain at least
-                one uppercase letter, one lowercase letter, and one digit
-              </span>
+              <p>
+                <span className="text-red-500 text-sm tracking-tighter leading-3 mt-1">
+                  Password must be at least 8 characters long and contain at
+                  least one uppercase letter, one lowercase letter, and one
+                  digit and one special character
+                </span>
+              </p>
             )}
           </div>
           <div className="flex justify-center">

@@ -174,7 +174,7 @@ const Courses = () => {
         )}
         <div className="container mx-auto">
           <CourseFilter onFilterChange={handleFilterChange} />
-          <CourseList courses={filteredCourses} gridColumns={4} />
+          <CourseList courses={filteredCourses} gridColumns={3} />
           <h2 className=" flex justify-center items-center text-3xl m-6 font-bold">
             Explore Courses Levelwise
           </h2>

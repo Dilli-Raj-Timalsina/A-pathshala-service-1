@@ -94,13 +94,19 @@ export default function Navbar() {
                 className="flex items-center focus:outline-none"
                 // onClick={toggleDropdown}
               >
-                <Image
-                  src={'/icon.svg'}
-                  width={39}
-                  height={39}
-                  className=" rounded-full mr-2"
-                  alt="Profile"
-                />
+                {!user?.img ? (
+                  <span className="bg-blue-400 text-lg text-white m-2 z-50 flex justify-center items-center h-10 w-10  rounded-full text-center">
+                    {user.name[0]}
+                  </span>
+                ) : (
+                  <img
+                    src={'/icon.svg'}
+                    width={39}
+                    height={39}
+                    className=" rounded-full mr-2"
+                    alt="Profile"
+                  />
+                )}
                 <span className="text-gray-700 font-medium">{user.name}</span>
               </button>
               <Link

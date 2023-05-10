@@ -10,6 +10,7 @@ const Signup = () => {
   // console.log(jwt);
   const { setUser } = useContext(userContext);
   const { setCookie } = useContext(cookieContext);
+  const [error, setError] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,9 +58,9 @@ const Signup = () => {
     // console.log(data);
     // router.push('/');
   };
-  const handleFaceBook = () => {
-    fetch();
-  };
+  // const handleFaceBook = () => {
+  //   fetch();
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -106,6 +107,7 @@ const Signup = () => {
         router.back();
       } else {
         setLoading(false);
+        setError(true);
         throw new Error('Something Wend Wrong / signup failed');
       }
     } catch (error) {
@@ -176,6 +178,7 @@ const Signup = () => {
             Log in here
           </Link>
         </div>
+
         <form onSubmit={handleSubmit} className="font-light">
           <div className="mb-4">
             <label
@@ -259,21 +262,24 @@ const Signup = () => {
             </button>
           </div>
         </form>
+        <span className="text-lg font-bold flex justify-center items-center ">
+          Or
+        </span>
         <div className="flex mt-2 justify-center gap-2">
           <button
             onClick={handleGoogle}
             disabled={loading}
-            className={` bg-red-500  hover:bg-red-700 whitespace-nowrap text-white font-bold py-2 px-4 rounded mb-4
+            className={` bg-blue-500  hover:bg-sky-700 whitespace-nowrap text-white font-bold py-2 px-4 rounded mb-4
           `}
           >
             Log In with Google
           </button>
-          <button
+          {/* <button
             onClick={handleFaceBook}
             className="bg-blue-500 hover:bg-blue-700 whitespace-nowrap text-white font-bold py-2 px-4 rounded mb-4"
           >
             Log In with Facebook
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

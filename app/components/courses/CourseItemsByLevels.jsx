@@ -17,7 +17,7 @@ const CourseItemsByLevel = () => {
         .slice(0, 8)
         .map(([level, courses]) => (
           <div key={level} className="mb-8">
-            <h2 className="text-2xl my-10 px-10 font-extrabold bg-teal-100 z-10 bg-gray-100 shadow-lg rounded-lg  mb-4">
+            <h2 className="text-2xl my-10 px-10 font-extrabold  z-10 bg-gray-100 shadow-lg rounded-lg  mb-4">
               {level}
             </h2>
             <div className="courses grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

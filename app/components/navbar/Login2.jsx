@@ -1,10 +1,14 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import BounceSpinners from '../spinners/BounceSpinners';
+import { cookieContext, userContext } from '@/app/layout';
 const Login2 = () => {
+  // const { setCookie } = useContext(cookieContext);
+  const { setUser } = useContext(userContext);
   const [email, setEmail] = useState('');
+  const [error, setError] = useState(false);
   const router = useRouter();
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -39,14 +43,23 @@ const Login2 = () => {
           return res.json();
         })
         .then((data) => {
-          // setUser(data);
-          console.log(data);
-          setLoading(false);
-          router.back();
+          if (data.status === 'success') {
+            console.log(data);
+            setUser(data.userProfile);
+            router.back();
+          } else {
+            setLoading(false);
+            setError(true);
+            console.log(data);
+            throw new Error(data);
+          }
         });
     } catch (error) {
       setLoading(false);
       console.log(error);
+      setError(error);
+    } finally {
+      setLoading(false);
     }
     // router.back();
     // TODO: Handle login with email and password
@@ -134,6 +147,31 @@ const Login2 = () => {
             Sign Up here
           </Link>
         </div>
+
+        {error && (
+          <div className=" border-red-400 px-2 flex border-2 shadow-md  ">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="red"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="me-1"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+            </span>
+            Sorry, we don't recognize that username or password.<br></br> You
+            can try again or reset your password
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -183,6 +221,9 @@ const Login2 = () => {
             </button>
           </div>
         </form>
+        <span className="flex justify-center text-xl font-bold items-center">
+          Or{' '}
+        </span>
         <div className="flex mt-2 justify-center sm:gap-1 gap-2">
           <button
             onClick={handleGoogle}
@@ -190,12 +231,12 @@ const Login2 = () => {
           >
             Log In with Google
           </button>
-          <button
+          {/* <button
             onClick={handleFacebook}
             className="bg-blue-500 hover:bg-blue-700 whitespace-nowrap text-white font-bold py-2 px-4 rounded mb-4"
           >
             Log In with Facebook
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

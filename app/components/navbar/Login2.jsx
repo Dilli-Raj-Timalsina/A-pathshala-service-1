@@ -168,7 +168,7 @@ const Login2 = () => {
                 <line x1="12" y1="16" x2="12.01" y2="16" />
               </svg>
             </span>
-            Sorry, we don't recognize that username or password.<br></br> You
+            Sorry, we do not recognize that username or password.<br></br> You
             can try again or reset your password
           </div>
         )}

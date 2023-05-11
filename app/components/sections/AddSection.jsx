@@ -181,7 +181,9 @@
 import { useState, useContext } from 'react';
 import { courseContext } from '@/app/become-teacher/create-course/page';
 import BounceSpinners from '../spinners/BounceSpinners';
+import axios from 'axios';
 const AddSection = ({ section, onChange, onRemove }) => {
+  const [progress, setProgress] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { courseId } = useContext(courseContext);
@@ -190,7 +192,6 @@ const AddSection = ({ section, onChange, onRemove }) => {
   const [title, setTitle] = useState(section.title);
   const [videos, setVideos] = useState(section.videos);
   const [materials, setMaterials] = useState(section.materials);
-
   const handleNameChange = (e) => {
     setName(e.target.value);
     onChange({ ...section, name: e.target.value });
@@ -201,54 +202,29 @@ const AddSection = ({ section, onChange, onRemove }) => {
     onChange({ ...section, title: e.target.value });
   };
 
-  const handleVideoFileChange = (e, index) => {
-    const newVideos = [...videos];
-    newVideos[index].file = e.target.files[0];
-    setVideos(newVideos);
-    onChange({ ...section, videos: newVideos });
+  const handleVideoFileChange = (event) => {
+    setVideos([...event.target.files]);
+    console.log(event.target.files);
+    // console.log([...videos]);
   };
-  const handleSave = async () => {
-    setIsSubmitting(true);
-    let formData = new FormData();
-    formData.append('name', name);
-    // formData.append('binary', file);
-    formData.append('title', title);
-    formData.append('videos', videos);
-    formData.append('materials', materials);
+  // const handleVideoFileChange = (e, index) => {
+  //   const newVideos = [...videos];
+  //   newVideos[index].file = e.target.files[0];
+  //   // setVid(e.target.files[0]);
+  //   onChange({ ...section, videos: newVideos });
+  // };
 
-    console.log(...formData);
-    try {
-      const res = await fetch(
-        `https://a-pathshala-service-2.onrender.com/api/v1/course/createCourse/${courseId}`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
-      if (res.ok) {
-        setIsSubmitted(true);
-        setIsSubmitting(false);
-        // alert('Course created successfully!');
-      }
-    } catch (error) {
-      setIsSubmitted(false);
-      setIsSubmitting(false);
-      console.log(error);
-    }
-  };
-
-  const handleVideoNameChange = (e, index) => {
-    const newVideos = [...videos];
-    newVideos[index].name = e.target.value;
-    setVideos(newVideos);
-    onChange({ ...section, videos: newVideos });
-  };
+  // const handleVideoNameChange = (e, index) => {
+  //   const newVideos = [...videos];
+  //   newVideos[index].name = e.target.value;
+  //   setVideos(newVideos);
+  //   onChange({ ...section, videos: newVideos });
+  // };
 
   const handleAddVideo = () => {
-    setVideos([...videos, { file: null, name: '' }]);
-    onChange({ ...section, videos: [...videos, { file: null, name: '' }] });
+    setVideos([...videos, { file: null }]);
+    onChange({ ...section, videos: [...videos, { file: null }] });
+    // console.log(videos);
   };
 
   const handleRemoveVideo = (index) => {
@@ -265,18 +241,18 @@ const AddSection = ({ section, onChange, onRemove }) => {
     onChange({ ...section, materials: newMaterials });
   };
 
-  const handleMaterialNameChange = (e, index) => {
-    const newMaterials = [...materials];
-    newMaterials[index].name = e.target.value;
-    setMaterials(newMaterials);
-    onChange({ ...section, materials: newMaterials });
-  };
+  // const handleMaterialNameChange = (e, index) => {
+  //   const newMaterials = [...materials];
+  //   newMaterials[index].name = e.target.value;
+  //   setMaterials(newMaterials);
+  //   onChange({ ...section, materials: newMaterials });
+  // };
 
   const handleAddMaterial = () => {
-    setMaterials([...materials, { file: null, name: '' }]);
+    setMaterials([...materials, { file: null }]);
     onChange({
       ...section,
-      materials: [...materials, { file: null, name: '' }],
+      materials: [...materials, { file: null }],
     });
   };
 
@@ -285,6 +261,46 @@ const AddSection = ({ section, onChange, onRemove }) => {
     newMaterials.splice(index, 1);
     setMaterials(newMaterials);
     onChange({ ...section, materials: newMaterials });
+  };
+  const handleSave = async () => {
+    console.log(videos);
+    // setIsSubmitting(true);
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('title', title);
+    // formData.append('binary', vid);
+    videos.forEach((file) => {
+      formData.append('binary', file);
+    });
+    console.log(formData);
+    try {
+      const res = await axios.post(
+        'https://a-pathshala-service-2.onrender.com/api/v1/course/uploadFolder',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          onUploadProgress: (ProgressEvent) => {
+            setProgress(
+              Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100)
+            );
+          },
+        }
+      );
+      if (res.ok) {
+        setProgress(0);
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+        // alert('Course created successfully!');
+      }
+    } catch (error) {
+      setProgress(0);
+
+      setIsSubmitted(false);
+      setIsSubmitting(false);
+      console.log(error);
+    }
   };
 
   return (
@@ -327,21 +343,22 @@ const AddSection = ({ section, onChange, onRemove }) => {
             <input
               className="mr-2"
               type="file"
+              multiple
               onChange={(e) => handleVideoFileChange(e, index)}
             />
-            <input
+            {/* <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
               value={video.name}
               onChange={(e) => handleVideoNameChange(e, index)}
-            />
-            <button
+            /> */}
+            {/* <button
               type="button"
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 ml-2 rounded"
               onClick={() => handleRemoveVideo(index)}
             >
               -
-            </button>
+            </button> */}
           </div>
         ))}
         <button
@@ -361,19 +378,19 @@ const AddSection = ({ section, onChange, onRemove }) => {
               type="file"
               onChange={(e) => handleMaterialFileChange(e, index)}
             />
-            <input
+            {/* <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
               value={material.name}
               onChange={(e) => handleMaterialNameChange(e, index)}
-            />
-            <button
+            /> */}
+            {/* <button
               type="button"
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 ml-2 rounded"
               onClick={() => handleRemoveMaterial(index)}
             >
               -
-            </button>
+            </button> */}
           </div>
         ))}
         <button
@@ -397,6 +414,16 @@ const AddSection = ({ section, onChange, onRemove }) => {
           >
             Save Section
           </button>
+          {progress > 0 && (
+            <div className="relative z-50 pt-1">
+              <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-300">
+                <div
+                  style={{ width: `${progress}%` }}
+                  className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+                ></div>
+              </div>
+            </div>
+          )}
           <button
             type="button"
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"

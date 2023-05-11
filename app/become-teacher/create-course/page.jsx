@@ -2,8 +2,6 @@
 import React, { createContext, useState } from 'react';
 // import CreateCourse from '@/app/components/becomeTeacher/CreateCourse'
 import CreateNewCourse from '@/app/components/sections/CreateNewCourse';
-import AddSection from '@/app/components/sections/AddSection';
-import MultipleSections from '@/app/components/sections/MultipleSections';
 import CourseBuilder from '@/app/components/sections/CourseBuilder';
 export const courseContext = createContext();
 const AddCourse = () => {

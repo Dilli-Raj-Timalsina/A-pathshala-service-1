@@ -1,18 +1,24 @@
 'use client';
 import { courseContext } from '@/app/become-teacher/create-course/page';
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import { cookieContext } from '@/app/layout';
 import BounceSpinners from '../spinners/BounceSpinners';
 function CreateNewCourse({ setNext }) {
-  const { setCourseId } = useContext(courseContext);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { cookie } = useContext(cookieContext);
+  const { setCourseId, courseId } = useContext(courseContext);
+  console.log(courseId);
+  // const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [file, setFile] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [course, setCourse] = useState({
     title: '',
     subtitle: '',
-    requirements: [],
+    requirements: '',
     description: '',
-    price: null,
-    discount: null,
+    price: 0,
+    discount: 0,
     language: '',
     binary: null,
   });
@@ -23,12 +29,13 @@ function CreateNewCourse({ setNext }) {
   };
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
+    const myFile = event.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
       setCourse({ ...course, binary: reader.result });
     };
-    reader.readAsDataURL(file);
+    setFile(myFile);
+    reader.readAsDataURL(myFile);
   };
 
   const handleSubmit = async (event) => {
@@ -36,48 +43,42 @@ function CreateNewCourse({ setNext }) {
     setIsSubmitting(true);
     let formData = new FormData();
     // formData.append('binary', file);
-    formData.append('bucketName', 'the-new-java-course-for-s');
     formData.append('title', course.title);
-    formData.append('syllabus', course.title);
     formData.append('subtitle', course.subtitle);
     formData.append('description', course.description);
     formData.append('price', course.price);
+    formData.append('category', 'Class 10');
+    formData.append('subCategories', 'lkdfj');
     formData.append('discount', course.discount);
     formData.append('language', course.language);
-    formData.append('binary', course.binary);
+    formData.append('binary', file);
     formData.append('requirements', course.requirements);
-    console.log(...formData);
-    // try {
-    //   const res = await axios.post(
-    //     'https://a-pathshala-service-2.onrender.com/api/v1/course/createCourse',
-    //     formData
-    //   );
-    //   console.log(await res.json());
-    //   if (!res.ok) {
-    setIsSubmitted(true);
-    setIsSubmitting(false);
-    // setCourseId(res?.id);
-    // alert('Course created successfully!');
-    setNext(true);
-    setCourse({
-      title: '',
-      subtitle: '',
-      requirements: [],
-      description: '',
-      price: '',
-      discount: '',
-      language: '',
-      binary: '',
-    });
-    //   } else {
-    //     // setIsSubmitted(true);
-    //     setIsSubmitting(false);
-    //   }
-    // } catch (error) {
-    //   setIsSubmitting(false);
+    try {
+      const res = await axios.post(
+        'https://a-pathshala-service-2.onrender.com/api/v1/course/createCourse',
+        formData,
+        {
+          headers: {
+            Authorization: cookie,
+          },
+        }
+      );
+      // console.log(res);
+      if (res.status === 200) {
+        setCourseId(res.data.bucketName);
 
-    //   console.log(error);
-    // }
+        setIsSuccess(true);
+        setIsSubmitting(false);
+        setNext(true);
+      } else {
+        setIsSubmitting(false);
+        console.log(res);
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+
+      console.log(error);
+    }
   };
 
   return (
@@ -273,7 +274,7 @@ function CreateNewCourse({ setNext }) {
             )}
           </button>
         </div>
-        {isSubmitted && (
+        {isSuccess && (
           <p className="mt-4 text-center text-green-500 font-bold">
             Course Created Successfully !
           </p>

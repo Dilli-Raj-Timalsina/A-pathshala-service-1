@@ -15,6 +15,7 @@
     "@syncfusion/ej2-react-inputs": "^21.2.3",
     "@syncfusion/ej2-react-popups": "^21.2.3",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "framer-motion": "^10.12.8",

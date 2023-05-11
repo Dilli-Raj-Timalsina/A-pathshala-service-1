@@ -7,6 +7,8 @@ import { cookieContext, userContext } from '@/app/layout';
 const Login2 = () => {
   // const { setCookie } = useContext(cookieContext);
   const { setUser } = useContext(userContext);
+  const { setCookie, cookie } = useContext(cookieContext);
+  console.log(cookie);
   const [email, setEmail] = useState('');
   const [error, setError] = useState(false);
   const router = useRouter();
@@ -44,7 +46,8 @@ const Login2 = () => {
         })
         .then((data) => {
           if (data.status === 'success') {
-            console.log(data);
+            setCookie(data.token);
+            console.log(cookie);
             setUser(data.userProfile);
             router.back();
           } else {

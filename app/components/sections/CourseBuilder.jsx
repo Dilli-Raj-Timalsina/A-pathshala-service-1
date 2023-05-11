@@ -1,9 +1,11 @@
 'use client';
-import { useState } from 'react';
-
-import AddSection from './AddSection';
+import { useContext, useState } from 'react';
+import { courseContext } from '@/app/become-teacher/create-course/page';
+// import AddSection from './AddSection';
+import CleanAddSection from './CleanAddSection';
 
 const CourseBuilder = () => {
+  // const { courseId } = useContext(courseContext);
   const [sections, setSections] = useState([
     { name: '', title: '', videos: [], materials: [] },
   ]);
@@ -41,7 +43,7 @@ const CourseBuilder = () => {
       >
         {sections.map((section, index) => (
           <div key={index}>
-            <AddSection
+            <CleanAddSection
               section={section}
               onChange={(section) => handleSectionChange(index, section)}
               onRemove={() => handleSectionRemove(index)}

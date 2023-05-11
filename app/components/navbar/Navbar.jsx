@@ -24,6 +24,7 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const currentUrl = usePathname();
   const { user } = useContext(userContext);
+  const { setCookie } = useContext(cookieContext);
   useEffect(() => {
     if (user._id) {
       setIsLoggedIn(true);
@@ -54,6 +55,7 @@ export default function Navbar() {
       if (res.ok) {
         setIsLoggedIn(false);
         setUser({});
+        setCookie(null);
         router.push('/');
       }
     } catch (error) {

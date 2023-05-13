@@ -29,7 +29,7 @@ const Login2 = () => {
     console.log(email, password);
     try {
       await fetch(
-        'https://a-pathshala-service-2.onrender.com/api/v1/student/login',
+        'https://a-pathshala-service-2.onrender.com/api/v1/user/login',
         {
           method: 'POST',
           body: JSON.stringify({

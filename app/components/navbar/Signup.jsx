@@ -13,6 +13,7 @@ const Signup = () => {
   const [error, setError] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState('user');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -68,7 +69,7 @@ const Signup = () => {
 
     try {
       const response = await fetch(
-        'https://a-pathshala-service-2.onrender.com/api/v1/student/signup',
+        'https://a-pathshala-service-2.onrender.com/api/v1/user/signup',
         {
           method: 'POST',
           headers: {
@@ -78,7 +79,7 @@ const Signup = () => {
             name: username,
             email: email,
             password: password,
-            passwordConfirm: password,
+            role,
           }),
         }
       );
@@ -97,7 +98,7 @@ const Signup = () => {
             // credentials: 'include',
           }
         );
-        console.log(profileResponse);
+        console.log(await profileResponse.json());
         if (profileResponse.ok) {
           const profileData = await profileResponse.json();
           console.log('login success' + profileData);
@@ -196,6 +197,18 @@ const Signup = () => {
               value={username}
               onChange={handleUsernameChange}
             />
+            <div className="border px-2 inline-flex items-center justify-center ms-6 mt-2 mb-0  rounded">
+              <label htmlFor="role">Role:</label>
+              <select
+                name="role"
+                id=""
+                className="my-2 border-none ps-2"
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="student">User</option>
+                <option value="teacher">Teacher</option>
+              </select>
+            </div>
           </div>
           <div className="mb-4">
             <label

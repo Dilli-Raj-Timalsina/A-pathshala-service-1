@@ -30,6 +30,7 @@ const CourseBuilder = () => {
   };
 
   const handleSubmit = (e) => {
+    router.push('/teachers/profile');
     e.preventDefault();
     console.log(sections);
     // Send data to backend server
@@ -63,7 +64,7 @@ const CourseBuilder = () => {
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          Create Course
+          Save Course
         </button>
       </form>
     </div>

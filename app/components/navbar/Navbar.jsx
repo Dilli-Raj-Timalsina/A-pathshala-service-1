@@ -26,27 +26,12 @@ export default function Navbar() {
   const { user } = useContext(userContext);
   const { setCookie } = useContext(cookieContext);
   useEffect(() => {
-    if (user._id) {
+    if (user?._id) {
       setIsLoggedIn(true);
     }
   }, [user]);
-  // useEffect(() => {
-  //   const x = async () => {
-  //     const data = await getUserData();
-  //     setUser(data);
-  //   };
-  //   x();
-  // }, []);
-  // const User = await getUserData();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setIsLoggedIn(true);
-  //   }
-  // }, [user]);
-  const handleProfileClick = () => {
-    // setToggleProfile((prev) => !prev);
-  };
+  const handleProfileClick = () => {};
   const handleLogout = async () => {
     try {
       const res = await fetch(
@@ -69,7 +54,7 @@ export default function Navbar() {
       {currentUrl != '/courses' && <SearchBar />}
       <Link
         href={'/become-teacher'}
-        className="text-3xl whitespace-nowrap font-bold text-blue-500"
+        className="text-3xl bg-sidebar-neutral-gradient px-2 rounded-md shadow-lg whitespace-nowrap font-bold text-blue-500"
       >
         Become Teacher
       </Link>
@@ -112,7 +97,7 @@ export default function Navbar() {
                 <span className="text-gray-700 font-medium">{user.name}</span>
               </button>
               <Link
-                href="#"
+                href="/account-profile"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
                 View Profile

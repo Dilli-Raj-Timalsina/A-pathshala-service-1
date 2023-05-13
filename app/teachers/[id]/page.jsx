@@ -1,8 +1,4 @@
-'use client';
-import { userContext } from '@/app/layout';
-import { courseContext } from '@/app/become-teacher/create-course/page';
 import dummyData from '@/app/components/data/DummyData';
-// import { useState, useEffect } from 'react';
 import TeacherHeader from '@/app/components/teachers/TeacherHeader';
 import CourseList from '@/app/components/teachers/CourseList';
 import Testimonial from '@/app/components/teachers/Testimonial';

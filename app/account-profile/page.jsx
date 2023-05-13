@@ -2,7 +2,7 @@
 import { cookieContext, userContext } from '../layout';
 import { courseContext } from '../become-teacher/create-course/page';
 import React, { useContext } from 'react';
-const getProfileData = async () => {
+const GetProfileData = async () => {
   const { user } = useContext(userContext);
   const { cookie } = useContext(cookieContext);
   const res = await fetch(
@@ -19,18 +19,18 @@ const getProfileData = async () => {
   );
   return res.json();
 };
-const page = async () => {
+const Page = async () => {
   const { user } = useContext(userContext);
 
   if (!user?._id) {
     return <>Pease log in</>;
   }
-  const data = await getProfileData();
+  const data = await GetProfileData();
   console.log(data);
   return <div>Welcome back{user.name}</div>;
 };
 
-export default page;
+export default Page;
 // import { useState } from 'react';
 // import Head from 'next/head';
 // import Image from 'next/image';

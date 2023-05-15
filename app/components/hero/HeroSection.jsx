@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen  relative overflow-hidden">
+    <section className="min-h-fit relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <svg
           viewBox="0 0 100 100"
@@ -13,8 +13,8 @@ const HeroSection = () => {
         >
           <defs>
             <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#F2F2F2"></stop>
-              <stop offset="100%" stop-color="#FFFFFF"></stop>
+              <stop offset="0%" stopColor="#F2F2F2"></stop>
+              <stop offset="100%" stopColor="#FFFFFF"></stop>
             </linearGradient>
           </defs>
           <circle cx="25" cy="25" r="20" fill="url(#grad)" />
@@ -22,7 +22,7 @@ const HeroSection = () => {
           <circle cx="75" cy="75" r="40" fill="url(#grad)" />
         </svg>
       </div>
-      <div className="relative z-10 max-h-screen py-10 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center justify-between">
+      <div className="relative max-h-screen py-10 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center justify-between">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +55,11 @@ const HeroSection = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="md:w-1/2"
         >
-          <img src="/teacher.png" alt="Hero Image" className="w-full" />
+          <img
+            src="/teacher.png"
+            alt="Hero Image"
+            className="w-full hidden lg:flex"
+          />
         </motion.div>
       </div>
     </section>

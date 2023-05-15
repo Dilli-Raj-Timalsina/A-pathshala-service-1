@@ -4,3 +4,7 @@
 @import '../node_modules/@syncfusion/ej2-base/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-react-inputs/styles/material.css';
+p {
+  font-family: 'Source_Sans_Pro', sans-serif;
+  font-size: 16px;
+}

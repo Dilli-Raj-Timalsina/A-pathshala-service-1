@@ -40,6 +40,8 @@ module.exports = {
         'form-gradient': 'linear-gradient(to right, #ffefba, #ffffff);',
         'sidebar-gradient':
           'linear-gradient(90deg, #fbfcff 0%, #e4d4f0 44%, #ffffff 100%',
+        'course-sidebar-gradient':
+          'linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%)',
       },
       colors: {
         secondary: '#2E8B57',

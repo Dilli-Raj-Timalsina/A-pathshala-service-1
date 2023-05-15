@@ -24,28 +24,14 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const currentUrl = usePathname();
   const { user } = useContext(userContext);
+  const { setCookie } = useContext(cookieContext);
   useEffect(() => {
-    if (user._id) {
+    if (user?._id) {
       setIsLoggedIn(true);
     }
   }, [user]);
-  // useEffect(() => {
-  //   const x = async () => {
-  //     const data = await getUserData();
-  //     setUser(data);
-  //   };
-  //   x();
-  // }, []);
-  // const User = await getUserData();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setIsLoggedIn(true);
-  //   }
-  // }, [user]);
-  const handleProfileClick = () => {
-    // setToggleProfile((prev) => !prev);
-  };
+  const handleProfileClick = () => {};
   const handleLogout = async () => {
     try {
       const res = await fetch(
@@ -54,6 +40,7 @@ export default function Navbar() {
       if (res.ok) {
         setIsLoggedIn(false);
         setUser({});
+        setCookie(null);
         router.push('/');
       }
     } catch (error) {
@@ -67,7 +54,7 @@ export default function Navbar() {
       {currentUrl != '/courses' && <SearchBar />}
       <Link
         href={'/become-teacher'}
-        className="text-3xl whitespace-nowrap font-bold text-blue-500"
+        className="text-3xl bg-sidebar-neutral-gradient px-2 rounded-md shadow-lg whitespace-nowrap font-bold text-blue-500"
       >
         Become Teacher
       </Link>
@@ -94,17 +81,23 @@ export default function Navbar() {
                 className="flex items-center focus:outline-none"
                 // onClick={toggleDropdown}
               >
-                <Image
-                  src={'/icon.svg'}
-                  width={39}
-                  height={39}
-                  className=" rounded-full mr-2"
-                  alt="Profile"
-                />
+                {!user?.img ? (
+                  <span className="bg-blue-400 text-lg text-white m-2 z-50 flex justify-center items-center h-10 w-10  rounded-full text-center">
+                    {user.name[0]}
+                  </span>
+                ) : (
+                  <img
+                    src={'/icon.svg'}
+                    width={39}
+                    height={39}
+                    className=" rounded-full mr-2"
+                    alt="Profile"
+                  />
+                )}
                 <span className="text-gray-700 font-medium">{user.name}</span>
               </button>
               <Link
-                href="#"
+                href="/account-profile"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
                 View Profile

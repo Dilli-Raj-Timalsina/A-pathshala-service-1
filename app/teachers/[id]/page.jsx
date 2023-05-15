@@ -1,21 +1,9 @@
-// 'use client';
-// import React from 'react';
 import dummyData from '@/app/components/data/DummyData';
-// import { useState, useEffect } from 'react';
 import TeacherHeader from '@/app/components/teachers/TeacherHeader';
 import CourseList from '@/app/components/teachers/CourseList';
 import Testimonial from '@/app/components/teachers/Testimonial';
 import ContactForm from '@/app/components/teachers/ContactForm';
-// export function generateMetadata({ params }) {
-//   useEffect(() => {
-//     const data = dummyData.find((teache) => teache.id == parseInt(params.id));
-//     setTeacher(data);
-//     // console.log(data);
-//   }, []);
-//   return {
-//     title: post.name,
-//   };
-// }
+
 export async function generateMetadata({ params }) {
   const data = await dummyData.find(
     (teache) => teache.id == parseInt(params.id)
@@ -24,15 +12,7 @@ export async function generateMetadata({ params }) {
 }
 
 const TeachersPage = ({ params }) => {
-  // const [teacher, setTeacher] = useState({});
-  // useEffect(() => {
   const teacher = dummyData.find((teache) => teache.id == parseInt(params.id));
-  // setTeacher(data);
-  // console.log(data);
-  // }, []);
-  // console.log(teacher);
-  //   console.log(params.id);
-
   return (
     <div className="bg-fuchsia-50">
       <TeacherHeader teacher={teacher} />

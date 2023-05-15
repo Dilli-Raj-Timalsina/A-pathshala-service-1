@@ -10,8 +10,10 @@ const Signup = () => {
   // console.log(jwt);
   const { setUser } = useContext(userContext);
   const { setCookie } = useContext(cookieContext);
+  const [error, setError] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState('user');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -57,17 +59,17 @@ const Signup = () => {
     // console.log(data);
     // router.push('/');
   };
-  const handleFaceBook = () => {
-    fetch();
-  };
+  // const handleFaceBook = () => {
+  //   fetch();
+  // };
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await fetch(
-        'https://a-pathshala-service-2.onrender.com/api/v1/student/signup',
+        'https://a-pathshala-service-2.onrender.com/api/v1/user/signup',
         {
           method: 'POST',
           headers: {
@@ -77,7 +79,7 @@ const Signup = () => {
             name: username,
             email: email,
             password: password,
-            passwordConfirm: password,
+            role,
           }),
         }
       );
@@ -96,7 +98,7 @@ const Signup = () => {
             // credentials: 'include',
           }
         );
-        console.log(profileResponse);
+        console.log(await profileResponse.json());
         if (profileResponse.ok) {
           const profileData = await profileResponse.json();
           console.log('login success' + profileData);
@@ -106,10 +108,15 @@ const Signup = () => {
         router.back();
       } else {
         setLoading(false);
+        setError(true);
         throw new Error('Something Wend Wrong / signup failed');
       }
     } catch (error) {
+      setLoading(false);
+
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -134,7 +141,8 @@ const Signup = () => {
   const isPasswordValid = () => {
     // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
 
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{8,}$/;
+    const passwordRegex =
+      /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,16}$/;
     return passwordRegex.test(password);
   };
 
@@ -171,7 +179,8 @@ const Signup = () => {
             Log in here
           </Link>
         </div>
-        <form onSubmit={handleSubmit}>
+
+        <form onSubmit={handleSubmit} className="font-light">
           <div className="mb-4">
             <label
               className="block text-gray-700 font-bold mb-2"
@@ -188,6 +197,18 @@ const Signup = () => {
               value={username}
               onChange={handleUsernameChange}
             />
+            <div className="border px-2 inline-flex items-center justify-center ms-6 mt-2 mb-0  rounded">
+              <label htmlFor="role">Role:</label>
+              <select
+                name="role"
+                id=""
+                className="my-2 border-none ps-2"
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="student">User</option>
+                <option value="teacher">Teacher</option>
+              </select>
+            </div>
           </div>
           <div className="mb-4">
             <label
@@ -230,10 +251,13 @@ const Signup = () => {
               onChange={handlePasswordChange}
             />
             {password && !isPasswordValid() && (
-              <span className="text-red-500 mt-1">
-                Password must be at least 8 characters long and contain at least
-                one uppercase letter, one lowercase letter, and one digit
-              </span>
+              <p>
+                <span className="text-red-500 text-sm tracking-tighter leading-3 mt-1">
+                  Password must be at least 8 characters long and contain at
+                  least one uppercase letter, one lowercase letter, and one
+                  digit and one special character
+                </span>
+              </p>
             )}
           </div>
           <div className="flex justify-center">
@@ -251,21 +275,24 @@ const Signup = () => {
             </button>
           </div>
         </form>
+        <span className="text-lg font-bold flex justify-center items-center ">
+          Or
+        </span>
         <div className="flex mt-2 justify-center gap-2">
           <button
             onClick={handleGoogle}
             disabled={loading}
-            className={` bg-red-500  hover:bg-red-700 whitespace-nowrap text-white font-bold py-2 px-4 rounded mb-4
+            className={` bg-blue-500  hover:bg-sky-700 whitespace-nowrap text-white font-bold py-2 px-4 rounded mb-4
           `}
           >
             Log In with Google
           </button>
-          <button
+          {/* <button
             onClick={handleFaceBook}
             className="bg-blue-500 hover:bg-blue-700 whitespace-nowrap text-white font-bold py-2 px-4 rounded mb-4"
           >
             Log In with Facebook
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

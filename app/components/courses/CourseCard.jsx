@@ -17,7 +17,7 @@ const CourseCard = ({ course }) => {
         <div className="flex justify-between items-center">
           <h2
             className={
-              ssp.className + ' text-xl line-clamp-1  text-gray-900 mb-4'
+              ssp.className + ' text-xl line-clamp-2  text-gray-900 mb-4'
             }
           >
             {course.title}
@@ -25,9 +25,7 @@ const CourseCard = ({ course }) => {
           <div className="text-gray-700 text-sm mb-4">{course.duration}</div>
         </div>
         <div className="flex justify-between items-center">
-          <div className="text-gray-600 text-lg font-medium">
-            {course.level}
-          </div>
+          <p className="text-gray-600 text-lg ">{course.level}</p>
           <div className="text-gray-600 whitespace-nowrap line-clamp-0 text-lg font-medium">
             Rs {course.price}
           </div>

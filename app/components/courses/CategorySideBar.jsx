@@ -1,22 +1,38 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-const CategorySidebar = () => {
+const CategorySidebar = ({ setIsClosed }) => {
   const [activeCategory, setActiveCategory] = useState(null);
-
   const handleCategoryClick = (categoryId) => {
     setActiveCategory(activeCategory === categoryId ? null : categoryId);
   };
 
   return (
-    <aside className="bg-gray-800 text-gray-100 w-full md:w-1/3 lg:w-1/4 py-4 md:py-8 lg:py-12 px-4 md:px-6 lg:px-8">
-      <h2 className="text-lg md:text-xl font-bold mb-4">Categories</h2>
+    <aside className=" bg-course-sidebar-gradient  text-black w-full md:w-1/3 lg:w-1/4 py-4 md:py-8 lg:py-12 px-4 md:px-6 lg:px-8">
+      <div className="flex justify-between">
+        <h2 className="text-lg md:text-xl font-bold mb-4">Categories</h2>
+        <button onClick={() => setIsClosed(true)}>
+          <svg
+            className="w-6 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M18 6L6 18" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <nav>
         <ul>
           {categories.map((category) => (
             <li key={category.id} className="mb-4 md:mb-6 lg:mb-8">
               <button
-                className="text-lg font-medium flex items-center justify-between w-full px-2 md:px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                className="text-lg font-medium flex items-center justify-between w-full px-2 md:px-4 py-3 rounded-lg hover:bg-white hover:rounded-xl transition-colors duration-100 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:bg-white"
                 onClick={() => handleCategoryClick(category.id)}
               >
                 <span>{category.name}</span>
@@ -40,7 +56,7 @@ const CategorySidebar = () => {
                   {category.subcategories.map((subcategory) => (
                     <li key={subcategory.id} className="mb-2">
                       <Link
-                        className="text-gray-400 hover:text-white text-md md:text-lg lg:text-xl"
+                        className="hover:bg-gray-200 hover:rounded-md px-6 transition-colors duration-100 focus:outline-none focus:bg-white text-md md:text-lg lg:text-xl"
                         href={`/categories/${category.id}/${subcategory.id}`}
                       >
                         {subcategory.name}

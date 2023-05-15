@@ -9,7 +9,6 @@ const PopularCourses = () => {
       .sort((a, b) => a.rating - b.rating)
       .slice(0, 4);
     setPopularCourses(result);
-    console.log(PopularCourses);
   }, []);
 
   return (

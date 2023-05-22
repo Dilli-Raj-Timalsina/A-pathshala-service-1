@@ -16,7 +16,7 @@ const PopularCourses = () => {
       <h2 className="font-bold text-3xl text-black m-10 ms-12">
         Popular Courses{' '}
       </h2>
-      <div className="grid md:grid-cols-3 gap-6 mx-6 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="grid md:grid-cols-3 gap-3 mx-6 lg:grid-cols-4">
         {PopularCourses.map((course, ind) => (
           <CourseCard key={ind} course={course} />
         ))}

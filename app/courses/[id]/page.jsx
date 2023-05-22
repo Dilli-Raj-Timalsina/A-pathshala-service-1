@@ -1,8 +1,5 @@
-'use client';
-import React from 'react';
-import { useState } from 'react';
-import Link from 'next/link';
-import Checkout from '@/app/components/courseConsume/checkout';
+import Checkout from '@/app/components/courseConsume/Checkout';
+
 import CourseHeader from '@/app/components/courseConsume/CourseHeader';
 import CourseReview from '@/app/components/courseConsume/CourseReview';
 

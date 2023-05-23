@@ -1,31 +1,54 @@
 import React from 'react';
 import Link from 'next/link';
-import { Source_Sans_Pro } from 'next/font/google';
+import Image from 'next/image';
+import { Source_Sans_Pro, Sora } from 'next/font/google';
 const ssp = Source_Sans_Pro({
   weight: ['600'],
   subsets: ['cyrillic'],
 });
+const sora = Sora({
+  weight: 'variable',
+  subsets: ['latin'],
+});
 const CourseCard = ({ course }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+    <div className="bg-white shadow-sm border-2  rounded-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
       <img
         src={course.image}
         alt={course.title}
         className="w-full h-48 object-cover"
       />
-      <div className="p-6">
+      <div className="p-2">
+        <div className="flex justify-between">
+          <div className=" text-sm text-neutral-500">{'Technology'}</div>
+          <div className=" h-6  flex items-center justify-center ">
+            <p
+              className={
+                ' bg-tertiary3-500 px-2 whitespace-nowrap rounded-xl text-white'
+              }
+            >
+              20% off
+            </p>
+          </div>
+        </div>
         <div className="flex justify-between items-center">
           <h2
             className={
-              ssp.className + ' text-xl line-clamp-2  text-gray-900 mb-4'
+              ssp.className + ' text-lg line-clamp-2  text-neutral-900 mb-4'
             }
           >
             {course.title}
           </h2>
-          <div className="text-gray-700 text-sm mb-4">{course.duration}</div>
+          {/* <div className="text-gray-700 text-sm mb-4">{course.duration}</div> */}
         </div>
         <div className="flex justify-between items-center">
-          <p className="text-gray-600 text-lg ">{course.level}</p>
+          <p className=" text-black  flex ">
+            <Image src={'/star.svg'} height={20} width={20} alt="stars"></Image>
+            {4.5}
+            <span className=" text-neutral-500 ">
+              {`(${course.totalStudent ? course.totalStudent : '1000'})`}
+            </span>
+          </p>
           <div className="text-gray-600 whitespace-nowrap line-clamp-0 text-lg font-medium">
             Rs {course.price}
           </div>

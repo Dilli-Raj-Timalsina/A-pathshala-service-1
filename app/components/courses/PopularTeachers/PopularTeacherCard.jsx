@@ -14,7 +14,7 @@ const PopularTeacherCard = ({ teacher }) => {
   return (
     <Link className=" group" href={`/teachers/${teacher.id}`}>
       <div
-        className={`bg-white shadow-lg rounded-lg overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-300`}
+        className={`bg-white shadow-sm border-2 rounded-lg overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-300`}
       >
         <div className="flex justify-around  items-center">
           <img
@@ -22,20 +22,22 @@ const PopularTeacherCard = ({ teacher }) => {
             alt={`Photo of ${teacher.name}`}
             className="rounded-full"
           />
-          <div className="flex gap-1">
-            <p className="text-yellow-500 text-3xl top-2 font-bold">
-              {teacher.rating.toFixed(1)}
-            </p>
+        </div>
+        <div className="flex justify-around items-center">
+          <h2 className={`text-lg ${ssp.className} mb-2`}>{teacher.name}</h2>
+          <div className="flex justify-center items-center gap-1">
             <Image
               src={'/star.svg'}
               alt={teacher.name}
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
+            <p className="text-yellow-500 top-2 font-bold">
+              {teacher.rating.toFixed(1)}
+            </p>
           </div>
         </div>
         <div className="py-4 px-6">
-          <h2 className={`text-xl ${ssp.className} mb-2`}>{teacher.name}</h2>
           <p
             className={headingFont + ' text-gray-600 text-sm line-clamp-4 mb-4'}
           >

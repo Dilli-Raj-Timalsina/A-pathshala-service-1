@@ -8,11 +8,11 @@ const CreateCourse = () => {
   const { user } = useContext(userContext);
   const handleCreateCourse = (e) => {
     e.preventDefault();
-    if (!user._id) {
-      router.push('/login');
-    } else {
-      router.push('become-teacher/create-course');
-    }
+    // if (!user._id) {
+    //   router.push('/login');
+    // } else {
+    router.push('become-teacher/create-course');
+    // }
   };
   // href="become-teacher/create-course"
 

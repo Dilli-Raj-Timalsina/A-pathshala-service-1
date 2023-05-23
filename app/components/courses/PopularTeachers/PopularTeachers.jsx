@@ -22,7 +22,7 @@ const PopularTeachers = () => {
       >
         Popular Teachers{' '}
       </h2>
-      <div className="grid md:grid-cols-3 gap-2 lg:grid-cols-5 min-w-full">
+      <div className="grid md:grid-cols-3 gap-2 lg:grid-cols-4 min-w-full">
         {popTeacher.map((teacher, ind) => (
           <Suspense key={ind} fallback={<SkeletonCard />}>
             <PopularTeacherCard key={ind} teacher={teacher} />

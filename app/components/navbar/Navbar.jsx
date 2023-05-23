@@ -49,12 +49,16 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="flex flex-col bg-nav-light-blue-gradient sm:flex-row justify-evenly items-center py-4">
+    <nav
+      className="flex flex-col bg-white sm:flex-row justify-evenly items-center pt-4
+ border-b-gray-200 border-2
+    "
+    >
       <Logo />
       {currentUrl != '/courses' && <SearchBar />}
       <Link
         href={'/become-teacher'}
-        className="text-3xl bg-sidebar-neutral-gradient px-2 rounded-md shadow-lg whitespace-nowrap font-bold text-blue-500"
+        className="text-3xl px-2 rounded-md shadow-lg whitespace-nowrap font-bold text-primary-600"
       >
         Become Teacher
       </Link>

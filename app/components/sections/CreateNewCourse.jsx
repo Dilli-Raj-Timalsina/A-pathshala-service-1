@@ -40,6 +40,8 @@ function CreateNewCourse({ setNext }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setNext(true);
+
     setIsSubmitting(true);
     let formData = new FormData();
     // formData.append('binary', file);

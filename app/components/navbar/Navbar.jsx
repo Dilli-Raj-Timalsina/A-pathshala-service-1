@@ -56,12 +56,12 @@ export default function Navbar() {
     >
       <Logo />
       {currentUrl != '/courses' && <SearchBar />}
-      <Link
+      {/* <Link
         href={'/become-teacher'}
         className="text-3xl px-2 rounded-md shadow-lg whitespace-nowrap font-bold text-primary-600"
       >
         Become Teacher
-      </Link>
+      </Link> */}
       <NavItems />
 
       {!isLoggedIn && <CallToAction />}

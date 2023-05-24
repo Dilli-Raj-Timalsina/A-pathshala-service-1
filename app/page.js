@@ -18,9 +18,9 @@ export default function Home() {
         <Hero />
 
         <div className="py-2 mb-4 md:mx-12 lg:mx-24">
-          <PopularTeachers />
-          <PopularCourses />
-          {/* <UpcomingCourses /> */}
+          {/* <PopularTeachers /> */}
+          {/* <PopularCourses /> */}
+          <UpcomingCourses />
         </div>
       </div>
     </Suspense>

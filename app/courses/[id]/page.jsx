@@ -1,21 +1,29 @@
 import Checkout from '@/app/components/courseConsume/Checkout';
-
+import CourseContent from '@/app/components/courseConsume/CourseContent';
+import Accordion from '@/app/components/courseConsume/Accordian';
 import CourseHeader from '@/app/components/courseConsume/CourseHeader';
 import CourseReview from '@/app/components/courseConsume/CourseReview';
-
-function CourseDetail() {
+const getCourse = async (id) => {
+  const res = await fetch(
+    `https://a-pathshala-service-2.onrender.com/api/v1/course/getCourseMetaData`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id: id }),
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+async function CourseDetail({ params }) {
+  const data = await getCourse('646cc45889de1369e32c43a7');
+  console.log(data);
   return (
-    <div className="grid grid-cols-3 ">
-      <div className="lg:ms-8 pb-8 col-span-2 px-4 sm:px-6 lg:px-8">
+    <div className="grid  grid-cols-3 ">
+      <div className="lg:ms-8 relative pb-8 col-span-2 px-4 sm:px-6 lg:px-8">
         <CourseHeader course={course} />
-        <div className="mb-8 border rounded-sm">
-          <img
-            src={course.image}
-            alt={course.title}
-            className=" w-3/4  h-96 object-cover
-          "
-          />
-        </div>
 
         <div className="flex">
           <div className="pr-4">
@@ -23,19 +31,22 @@ function CourseDetail() {
               <h3 className="text-2xl font-bold mb-4">Description</h3>
               <p>{course.description}</p>
             </div>
-            <div className="my-4" id="syllabus">
+            <CourseContent />
+            {/* <div className="my-4" id="syllabus">
               <h3 className="text-2xl font-bold mb-4">Syllabus</h3>
               <ul>
                 {course.syllabus.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </div>
+            </div> */}
             <div className="my-4" id="benefits">
               <h3 className="text-2xl font-bold mb-4">Benefits</h3>
-              <ul>
+              <ul className="grid grid-cols-2 gap-2">
                 {course.benefits.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li className=" list-disc" key={item}>
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -43,7 +54,9 @@ function CourseDetail() {
           </div>
         </div>
       </div>
-      <Checkout course={course} />
+      <div className="flex flex-col items-center">
+        <Checkout course={course} />
+      </div>
     </div>
   );
 }

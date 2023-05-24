@@ -8,7 +8,7 @@ const CourseHeader = ({ course }) => {
           {course.title}
         </h1>
       </div>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex border-b pb-2 items-center justify-between mb-4">
         <div className="flex  items-center">
           <p className=" flex font-medium text-gray-900 mr-4">
             <svg

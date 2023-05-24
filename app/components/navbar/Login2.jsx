@@ -64,7 +64,7 @@ const Login2 = () => {
     } finally {
       setLoading(false);
     }
-    // router.back();
+    router.back();
     // TODO: Handle login with email and password
   };
 

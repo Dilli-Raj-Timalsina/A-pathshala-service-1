@@ -2,7 +2,7 @@
 import { userContext } from '@/app/layout';
 import React from 'react';
 import { useContext } from 'react';
-const page = () => {
+const Page = () => {
   const { user } = useContext(userContext);
   const courses = [
     {
@@ -91,5 +91,5 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
 // lets make a dashboard that has 3 modern and catchy boxes with A+ Score, Enrolled Courses and Course Completed

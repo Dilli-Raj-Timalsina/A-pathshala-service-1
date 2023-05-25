@@ -5,10 +5,7 @@ const Checkout = ({ course }) => {
     <div className="bg-color-3-100 w-full fixed top-20 md:right-0 md:w-1/2 lg:w-1/3 mb-4 px-2">
       <div className="mb-8 w-full border rounded-sm">
         <video className=" rounded-md " width={640} height={360} controls>
-          <source
-            src="https://a-pathshala-service-2.onrender.com/api/v1/course/getCourseVideo/646cc45889de1369e32c43a7"
-            type="video/mp4"
-          />
+          <source src="/video.mp4" type="video/mp4" />
         </video>
       </div>
       <div className=" rounded-lg shadow-lg overflow-hidden">

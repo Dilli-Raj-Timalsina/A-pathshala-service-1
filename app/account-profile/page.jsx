@@ -31,11 +31,7 @@ const Page = async () => {
     data = await GetProfileData();
   }, []);
   console.log(data);
-  return (
-    <>
-      <SideBar />
-    </>
-  );
+  return <></>;
 };
 
 export default Page;

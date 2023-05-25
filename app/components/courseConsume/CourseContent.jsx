@@ -1,8 +1,6 @@
 'use client';
 import { useState } from 'react';
 import VideoPlayer from './VideoPlayer';
-import { func } from 'prop-types';
-
 const CourseContent = () => {
   const [expandedSections, setExpandedSections] = useState([]);
   const [showVideo, setShowVideo] = useState(false);
@@ -178,7 +176,7 @@ const CourseContent = () => {
                     {showVideo && (
                       <VideoPlayer
                         setShowVideo={setShowVideo}
-                        url={video.url}
+                        url={'/video-1.mp4'}
                       />
                     )}
                     {video.free ? (

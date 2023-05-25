@@ -3,6 +3,7 @@ import CourseContent from '@/app/components/courseConsume/CourseContent';
 import Accordion from '@/app/components/courseConsume/Accordian';
 import CourseHeader from '@/app/components/courseConsume/CourseHeader';
 import CourseReview from '@/app/components/courseConsume/CourseReview';
+import CourseTeachers from '@/app/components/courseConsume/CourseTeachers';
 const getCourse = async (id) => {
   const res = await fetch(
     `https://a-pathshala-service-2.onrender.com/api/v1/course/getCourseMetaData`,
@@ -31,6 +32,7 @@ async function CourseDetail({ params }) {
               <h3 className="text-2xl font-bold mb-4">Description</h3>
               <p>{course.description}</p>
             </div>
+            <CourseTeachers />
             <CourseContent />
             {/* <div className="my-4" id="syllabus">
               <h3 className="text-2xl font-bold mb-4">Syllabus</h3>

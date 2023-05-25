@@ -24,11 +24,15 @@ const VideoPlayer = ({ src, setShowVideo }) => {
             </svg>
           </button>
         </div>
-        <video className=" rounded-md " width={640} height={360} controls>
-          <source
-            src="https://a-pathshala-service-2.onrender.com/api/v1/course/getCourseVideo/646cc45889de1369e32c43a7"
-            type="video/mp4"
-          />
+        <video
+          className=" rounded-md "
+          preload="true"
+          autoPlay
+          width={640}
+          height={360}
+          controls
+        >
+          <source src="/video.mp4" type="video/mp4" />
         </video>
       </div>
     </div>

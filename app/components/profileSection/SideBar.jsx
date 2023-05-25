@@ -1,12 +1,30 @@
+'use client';
 import Link from 'next/link';
-
+import { usePathname } from 'next/navigation';
 const SideBar = () => {
+  const currRoute = usePathname();
+  const selected =
+    ' text-blue-500 bg-slate-50 px-2 rounded-s-full text-sm font-bold ';
+  const others = ' hover:rounded-s-full text-black px-2 text-sm font-bold ';
+
   return (
     <aside className="bg-white border-e text-black h-screen w-1/5 flex flex-col ">
       <div className="flex flex-col gap-3 ps-4 pt-8">
         <Link
-          href="/courses"
-          className="mt-1 flex pe-2 sm:mt-0 sm:ml-3 px-3 py-2 rounded-md  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-gray-700"
+          href="/account-profile/purchase"
+          className={` ${
+            currRoute === '/account-profile/purchase' ? selected : others
+          } mt-1 flex pe-2 sm:mt-0 sm:ml-3 px-3 py-2   font-bold  hover:bg-gray-200 focus:outline-none focus:bg-slate-100 focus:text-white"
+        `}
+        >
+          A+ Score
+        </Link>
+        <Link
+          href="/account-profile/mycourses"
+          className={` ${
+            currRoute === '/account-profile/mycourses' ? selected : others
+          }mt-1 flex pe-2 sm:mt-0 sm:ml-3 px-3 py-2  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-slate-100 focus:text-white"
+        `}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -21,11 +39,14 @@ const SideBar = () => {
               fillRule="evenodd"
             />
           </svg>
-          My Courses
+          Dashboard
         </Link>
         <Link
-          href="/wishlist"
-          className="mt-1 sm:mt-0 flex  sm:ml-3 px-3 py-2 rounded-md  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-gray-700"
+          href="/account-profile/wishlist"
+          className={` ${
+            currRoute === '/account-profile/wishlist' ? selected : others
+          }mt-1 sm:mt-0 flex  sm:ml-3 px-3 py-2  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-slate-100 focus:text-white"
+        `}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,14 +63,20 @@ const SideBar = () => {
           WishList
         </Link>
         <Link
-          href="/history"
-          className="mt-1 sm:mt-0 sm:ml-3 px-3 py-2 rounded-md  font-bold  hover-:bg-gray-700 focus:outline-none focus:bg-gray-700"
+          href="/account-profile/purchase"
+          className={` ${
+            currRoute === '/account-profile/purchase' ? selected : others
+          }mt-1 flex pe-2 sm:mt-0 sm:ml-3 px-3 py-2  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-slate-100 focus:text-white"
+        `}
         >
           Purchase History
         </Link>
         <Link
-          href="/settings"
-          className="mt-1 flex sm:mt-0 sm:ml-3 px-3 py-2 rounded-md  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-gray-700"
+          href="/account-profile/settings"
+          className={` ${
+            currRoute === '/account-profile/settings' ? selected : others
+          }mt-1 flex pe-2 sm:mt-0 sm:ml-3 px-3 py-2  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-slate-100 focus:text-white"
+        `}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +95,10 @@ const SideBar = () => {
         </Link>
         <Link
           href="/logout"
-          className="mt-1 flex  sm:mt-0 sm:ml-3 px-3 py-2 rounded-md  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-gray-700"
+          className={` ${
+            currRoute === '/account-profile/logout' ? selected : others
+          }mt-1 flex pe-2 sm:mt-0 sm:ml-3 px-3 py-2  font-bold  hover:bg-gray-200 focus:outline-none focus:bg-slate-100 focus:text-white"
+        `}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

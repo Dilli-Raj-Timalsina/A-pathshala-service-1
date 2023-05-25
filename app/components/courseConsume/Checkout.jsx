@@ -2,7 +2,7 @@ import React from 'react';
 
 const Checkout = ({ course }) => {
   return (
-    <div className="bg-color-3-100 w-full fixed bottom-0 md:right-0 md:w-1/2 lg:w-1/3 mb-4 px-2">
+    <div className="bg-color-3-100 w-full fixed top-20 md:right-0 md:w-1/2 lg:w-1/3 mb-4 px-2">
       <div className="mb-8 w-full border rounded-sm">
         <video className=" rounded-md " width={640} height={360} controls>
           <source

@@ -123,19 +123,19 @@ const CourseContent = () => {
 
   return (
     <>
-      <div className=" flex-col w-2/3  ">
+      <div className=" flex-col w-3/4  ">
         <h3 className="text-2xl py-2 font-bold">Course Content</h3>
         {sections.map((section) => (
           <div
             key={section.id}
-            className="border-b bg-blue-100 justify-center items-center ms-8 px-3 rounded-md border-gray-300 py-4"
+            className=" py-4 bg-pink-100/20 justify-center items-center ms-8 mx-3 rounded-md  "
           >
             <div
               className="flex items-center justify-around cursor-pointer"
               onClick={() => toggleSection(section.id)}
             >
               {' '}
-              <h2 className="text-sm font-bold">
+              <h2 className="text-lg font-bold">
                 {section.name}: {section.title}
               </h2>
               <svg

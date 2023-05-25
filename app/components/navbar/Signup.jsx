@@ -62,7 +62,7 @@ const Signup = () => {
           }),
         }
       );
-      console.log(response);
+      console.log(response.body);
       if (response.ok) {
         const data = await response.json();
         setCookie(data.token);

@@ -17,9 +17,7 @@ const CourseReview = ({ course }) => {
                 />
               </div>
               <div>
-                <p className="text-lg font-medium text-gray-900">
-                  {review.userName}
-                </p>
+                <p className=" font-medium text-gray-900">{review.userName}</p>
                 <p className="text-gray-600">{review.date}</p>
               </div>
             </div>

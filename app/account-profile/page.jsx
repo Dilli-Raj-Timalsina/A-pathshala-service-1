@@ -1,7 +1,8 @@
 'use client';
 import { cookieContext, userContext } from '../layout';
 import { courseContext } from '../become-teacher/create-course/page';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import SideBar from '../components/profileSection/SideBar';
 const GetProfileData = async () => {
   const { user } = useContext(userContext);
   const { cookie } = useContext(cookieContext);
@@ -22,12 +23,19 @@ const GetProfileData = async () => {
 const Page = async () => {
   const { user } = useContext(userContext);
 
-  if (!user?._id) {
-    return <>Pease log in</>;
-  }
-  const data = await GetProfileData();
+  // if (!user?._id) {
+  //   return <>Pease log in</>;
+  // }
+  let data;
+  useEffect(async () => {
+    data = await GetProfileData();
+  }, []);
   console.log(data);
-  return <div>Welcome back{user.name}</div>;
+  return (
+    <>
+      <SideBar />
+    </>
+  );
 };
 
 export default Page;

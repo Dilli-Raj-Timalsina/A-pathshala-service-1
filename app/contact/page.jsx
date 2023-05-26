@@ -9,7 +9,7 @@ const ContactPage = () => {
             Contact us
           </h1>
           <p class="mt-1 text-gray-600 ">
-            We'd love to talk about how we can help you.
+            We&apos;d love to talk about how we can help you.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ const ContactPage = () => {
 
               <div class="mt-3 text-center">
                 <p class="text-sm text-gray-500">
-                  We'll get back to you in 1-2 business days.
+                  We&apos;ll get back to you in 1-2 business days.
                 </p>
               </div>
             </form>
@@ -123,7 +123,7 @@ const ContactPage = () => {
               <div>
                 <h3 class="font-semibold text-gray-800 ">Knowledgebase</h3>
                 <p class="mt-1 text-sm text-gray-500">
-                  We're here to help with any questions or code.
+                  We&apos;re here to help with any questions or code.
                 </p>
                 <a
                   class="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600 hover:text-gray-800  -200"

@@ -4,7 +4,7 @@ const CourseHeader = ({ course }) => {
   return (
     <>
       <div className="w-full">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl pt-2 font-bold text-gray-900 mb-4">
           {course.title}
         </h1>
       </div>

@@ -121,12 +121,12 @@ const CourseContent = () => {
 
   return (
     <>
-      <div className=" flex-col w-3/4  ">
-        <h3 className="text-2xl py-2 font-bold">Course Content</h3>
+      <h3 className="text-2xl py-2 font-bold">Course Content</h3>
+      <div className=" flex-col  border-2  ">
         {sections.map((section) => (
           <div
             key={section.id}
-            className=" py-4 bg-pink-100/20 justify-center items-center ms-8 mx-3 rounded-md  "
+            className=" py-4 bg-pink-100/20 justify-center items-center ps-8 px-3 rounded-md  "
           >
             <div
               className="flex items-center justify-around cursor-pointer"
@@ -153,7 +153,7 @@ const CourseContent = () => {
               </svg>
             </div>
             {isSectionExpanded(section.id) && (
-              <div className="flex bg-white flex-col mt-4">
+              <div className="flex bg-white ps-20 flex-col mt-4">
                 {section.videos.map((video) => (
                   <div key={video.id} className="flex items-center mt-2">
                     <svg

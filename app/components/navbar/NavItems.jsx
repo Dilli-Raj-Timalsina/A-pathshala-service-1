@@ -5,7 +5,7 @@ const NavItems = () => {
     <div className=" justify-between sm:hidden lg:flex  items-center">
       <NavLink href={'#'} label={'Bootcamps'} />
       <NavLink href={'/courses'} label={'Courses'} />
-      <NavLink href={'/aplusscore'} label={'A+ Score'} />
+      <NavLink href={'/community'} label={'A+ Community'} />
       <NavLink href={'/contact'} label={'Contact'} />
     </div>
   );

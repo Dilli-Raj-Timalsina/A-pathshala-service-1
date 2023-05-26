@@ -2,26 +2,38 @@
 import { userContext } from '@/app/layout';
 import React from 'react';
 import { useContext } from 'react';
+import UpcomingCourses from '@/app/components/courses/UpcomingCourses/UpcomingCourses';
 const Page = () => {
   const { user } = useContext(userContext);
+  if (!user?._id) {
+    return <>Pease log in</>;
+  }
   const courses = [
     {
       id: 1,
-      name: 'Introduction to React',
-      price: 49.99,
+      name: 'Introduction to Web Development',
+      price: 500,
       enrolled: false,
-    },
-    {
-      id: 2,
-      name: 'Advanced React',
-      price: 99.99,
-      enrolled: false,
-    },
-    {
-      id: 3,
-      name: 'React Native',
-      price: 149.99,
-      enrolled: false,
+      title: 'Introduction to Web Development',
+      rating: '4.5',
+      teacher: 'Dilli Raj',
+      image: '/a.png',
+      description:
+        'This session will be conducted by popular tech personalities from across the globe who proved their worth and showing their amazing skills. do not miss this golden opportunity which is being offered for free.Register now and mark the date as we are just 1 week away from it to happen',
+      syllabus: [
+        'Introduction to HTML',
+        'Introduction to CSS',
+        'Introduction to JavaScript',
+        'Responsive Web Design',
+        'React Basics',
+        'Vue Basics',
+      ],
+      benefits: [
+        'Learn the basics of web development',
+        'Create responsive web pages',
+        'Use popular frameworks like React and Vue',
+        'Get a solid foundation for a career in web development',
+      ],
     },
   ];
   return (
@@ -67,7 +79,7 @@ const Page = () => {
               className="bg-white rounded-lgand shadow-lg p-6"
             >
               <h3 className="text-lg font-bold mb-2">{course.name}</h3>
-              <p className="text-gray-500 mb-4">${course.price}</p>
+              <p className="text-gray-500 mb-4">Rs {course.price}</p>
               {course.enrolled ? (
                 <button
                   className="bg-blue-500 text-white px-4 py-2 rounded-lg"

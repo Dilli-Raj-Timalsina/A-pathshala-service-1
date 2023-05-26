@@ -24,10 +24,10 @@ const CourseCard = ({ course }) => {
           <div className=" h-6  flex items-center justify-center ">
             <p
               className={
-                ' bg-tertiary3-500 px-2 whitespace-nowrap rounded-xl text-white'
+                ' bg-blue-600 text-white px-3 whitespace-nowrap rounded-xl'
               }
             >
-              20% off
+              New
             </p>
           </div>
         </div>

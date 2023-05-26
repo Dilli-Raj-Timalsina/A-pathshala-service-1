@@ -3,12 +3,16 @@ import CourseCard from '../CourseCard';
 
 const UpcomingCourses = () => {
   const course = {
+    id: 1,
+    name: 'Introduction to Web Development',
+    price: 500,
+    enrolled: false,
     title: 'Introduction to Web Development',
     rating: '4.5',
     teacher: 'John Smith',
     image: '/a.png',
     description:
-      'In this course, you will learn the basics of web development, including HTML, CSS, and JavaScript. You will also learn how to create responsive web pages and how to use popular frameworks like React and Vue.',
+      'This session will be conducted by popular tech personalities from across the globe who proved their worth and showing their amazing skills. do not miss this golden opportunity which is being offered for free.Register now and mark the date as we are just 1 week away from it to happen',
     syllabus: [
       'Introduction to HTML',
       'Introduction to CSS',
@@ -25,9 +29,12 @@ const UpcomingCourses = () => {
     ],
   };
   return (
-    <div>
-      <h1 className="text-2xl font-semibold my-2 mx-4">Our Upcoming Courses</h1>
-      <div className="grid ms-8 md:grid-cols-3 gap-3 mx-6 lg:grid-cols-4">
+    <div id="upcoming-courses">
+      <h1 className="text-3xl ms-8 font-semibold my-2 mx-4">
+        Our Upcoming Courses
+      </h1>
+      {/* <div className="grid ms-8 md:grid-cols-2 gap-3 mx-6 lg:grid-cols-2"> */}
+      <div className="flex items-center justify-center">
         <CourseCard course={course} />
       </div>
     </div>

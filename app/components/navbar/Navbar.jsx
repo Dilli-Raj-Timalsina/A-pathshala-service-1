@@ -2,7 +2,6 @@
 import NavItems from './NavItems';
 import SearchBar from './SearchBar';
 import Logo from './Logo';
-import Image from 'next/image';
 import CallToAction from './CallToAction';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -101,7 +100,7 @@ export default function Navbar() {
                 <span className="text-gray-700 font-medium">{user.name}</span>
               </button>
               <Link
-                href="/account-profile"
+                href="/account-profile/mycourses"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
                 View Profile

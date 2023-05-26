@@ -60,8 +60,11 @@ const CourseCard = ({ course }) => {
           >
             View Course
           </Link>
+
           <Link
-            href={course.url ? course.url : '/courses'}
+            href={
+              course.url ? course.url : '/account-profile/mycourses/checkout'
+            }
             className="inline-block bg-indigo-500 whitespace-nowrap hover:bg-indigo-600 text-white text-sm font-semibold py-2 px-4 mt-4 rounded transition duration-200"
           >
             Buy Now

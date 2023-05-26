@@ -2,12 +2,17 @@
 import { userContext } from '@/app/layout';
 import React from 'react';
 import { useContext } from 'react';
+import { useRouter } from 'next/navigation';
 import UpcomingCourses from '@/app/components/courses/UpcomingCourses/UpcomingCourses';
 const Page = () => {
   const { user } = useContext(userContext);
+  const router = useRouter();
   if (!user?._id) {
     return <>Pease log in</>;
   }
+  const handleEnroll = () => {
+    router.push('account-profile/mycourses/checkout');
+  };
   const courses = [
     {
       id: 1,

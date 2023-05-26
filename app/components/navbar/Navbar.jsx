@@ -76,7 +76,7 @@ export default function Navbar() {
           </button>
           {toggleProfile ? (
             <div
-              className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200"
+              className="absolute right-0 mt-2 z-50 py-2 w-48 bg-white rounded-md shadow-lg  border border-gray-200"
               // onMouseEnter={() => setToggleProfile(true)}
               onMouseLeave={() => setToggleProfile(false)}
             >

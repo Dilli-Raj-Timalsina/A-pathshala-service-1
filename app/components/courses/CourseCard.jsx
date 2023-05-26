@@ -12,7 +12,7 @@ const sora = Sora({
 });
 const CourseCard = ({ course }) => {
   return (
-    <div className="bg-white shadow-sm border-2  rounded-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+    <div className="bg-white shadow-md border rounded-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
       <img
         src={course.image}
         alt={course.title}
@@ -62,9 +62,7 @@ const CourseCard = ({ course }) => {
           </Link>
 
           <Link
-            href={
-              course.url ? course.url : '/account-profile/mycourses/checkout'
-            }
+            href={'/account-profile/purchase?courseId=1'}
             className="inline-block bg-indigo-500 whitespace-nowrap hover:bg-indigo-600 text-white text-sm font-semibold py-2 px-4 mt-4 rounded transition duration-200"
           >
             Buy Now

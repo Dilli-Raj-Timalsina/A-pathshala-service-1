@@ -49,7 +49,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="flex flex-col bg-white sm:flex-row justify-evenly items-center pt-4
+      className="flex flex-col pb-2 bg-white sm:flex-row justify-evenly items-center pt-4
  border-b-gray-200 border-2
     "
     >

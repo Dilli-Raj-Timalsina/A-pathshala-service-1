@@ -23,7 +23,9 @@ const teachers = [
 const CourseTeachers = () => {
   return (
     <div className="bg-white p-6 md:p-8 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Meet Our Teachers</h2>
+      <h2 className="text-2xl font-bold mb-4">
+        Your Teachers For this Bootcamp{' '}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {teachers.map((teacher) => (
           <div key={teacher.name} className="flex flex-col items-center">

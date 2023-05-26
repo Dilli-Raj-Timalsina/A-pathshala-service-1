@@ -1,5 +1,6 @@
 import React from 'react';
 import CourseCard from '../CourseCard';
+import CourseTeachers from '../../courseConsume/CourseTeachers';
 
 const UpcomingCourses = () => {
   const course = {
@@ -33,9 +34,11 @@ const UpcomingCourses = () => {
       <h1 className="text-3xl ms-8 font-semibold my-2 mx-4">
         Our Upcoming Courses
       </h1>
-      {/* <div className="grid ms-8 md:grid-cols-2 gap-3 mx-6 lg:grid-cols-2"> */}
-      <div className="flex items-center justify-center">
-        <CourseCard course={course} />
+      <div className="flex">
+        <div className="flex flex-shrink-0 items-center justify-center">
+          <CourseCard course={course} />
+        </div>
+        <CourseTeachers />
       </div>
     </div>
   );

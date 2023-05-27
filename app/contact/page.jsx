@@ -1,6 +1,65 @@
+'use client';
 import React from 'react';
-
+import { useState } from 'react';
+import BounceSpinners from '../components/spinners/BounceSpinners';
+import SuccessMessage from '../components/spinners/SuccessMessage';
+import ErrorMessage from '../components/spinners/ErrorMessage';
 const ContactPage = () => {
+  const [contact, setContact] = useState({
+    name: '',
+    email: '',
+    contact: '',
+    subject: '',
+    message: '',
+  });
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const InputEvent = (event) => {
+    const { name, value } = event.target;
+    setContact((preVal) => {
+      return {
+        ...preVal,
+        [name]: value,
+      };
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    console.log(contact);
+    try {
+      const res = await fetch(
+        'https://a-pathshala-service-2.onrender.com/api/v1/user/contactUs',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(contact),
+        }
+      );
+      const data = await res.json();
+      if (data.status === 'success') {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 3000);
+        setLoading(false);
+      } else {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 3000);
+        setLoading(false);
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
   return (
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
       <div class="max-w-2xl lg:max-w-5xl mx-auto">
@@ -12,90 +71,103 @@ const ContactPage = () => {
             We&apos;d love to talk about how we can help you.
           </p>
         </div>
-
+        {success ? (
+          <SuccessMessage message={'Message Received Successfully'} />
+        ) : (
+          error && (
+            <ErrorMessage message={'Something Went Wrong, Try again Later'} />
+          )
+        )}
         <div class="mt-12 grid items-center lg:grid-cols-2 gap-6 lg:gap-16">
           <div class="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 ">
             <h2 class="mb-8 text-xl font-semibold text-gray-800 ">
               Fill in the form
             </h2>
 
-            <form>
-              <div class="grid gap-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form type="submit" onSubmit={handleSubmit}>
+              <div className="grid gap-4">
+                <div className="border rounded-md border-teal-300 gap-4">
                   <div>
-                    <label for="hs-firstname-contacts-1" class="sr-only">
-                      First Name
+                    <label
+                      htmlFor="hs-firstname-contacts-1"
+                      className="sr-only"
+                    >
+                      Name
                     </label>
                     <input
                       type="text"
-                      name="hs-firstname-contacts-1"
+                      name="name"
+                      onChange={(e) => InputEvent(e)}
                       id="hs-firstname-contacts-1"
-                      class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
-                      placeholder="First Name"
-                    />
-                  </div>
-
-                  <div>
-                    <label for="hs-lastname-contacts-1" class="sr-only">
-                      Last Name
-                    </label>
-                    <input
-                      type="text"
-                      name="hs-lastname-contacts-1"
-                      id="hs-lastname-contacts-1"
-                      class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
-                      placeholder="Last Name"
+                      className="py-3 px-4 block w-full  text-sm focus:border-teal-500 focus:ring-teal-500 "
+                      placeholder="Name"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label for="hs-email-contacts-1" class="sr-only">
+                <div className="">
+                  <label htmlFor="hs-email-contacts-1" className="sr-only">
                     Email
                   </label>
                   <input
                     type="email"
-                    name="hs-email-contacts-1"
+                    name="email"
                     id="hs-email-contacts-1"
-                    autocomplete="email"
-                    class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
+                    autoComplete="email"
+                    onChange={(e) => InputEvent(e)}
+                    className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
                     placeholder="Email"
                   />
                 </div>
 
                 <div>
-                  <label for="hs-phone-number-1" class="sr-only">
+                  <label htmlFor="hs-contact-number-1" className="sr-only">
                     Phone Number
                   </label>
                   <input
-                    type="text"
-                    name="hs-phone-number-1"
-                    id="hs-phone-number-1"
-                    class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
+                    type="number"
+                    name="contact"
+                    onChange={(e) => InputEvent(e)}
+                    id="hs-contact-number-1"
+                    className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
                     placeholder="Phone Number"
                   />
                 </div>
-
                 <div>
-                  <label for="hs-about-contacts-1" class="sr-only">
+                  <label htmlFor="subject" className=" sr-only">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    onChange={(e) => InputEvent(e)}
+                    id="subject"
+                    className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
+                    placeholder="Subject"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="sr-only">
                     Details
                   </label>
                   <textarea
-                    id="hs-about-contacts-1"
-                    name="hs-about-contacts-1"
+                    id="message"
+                    name="message"
+                    onChange={(e) => InputEvent(e)}
                     rows="4"
-                    class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
-                    placeholder="Details"
+                    className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 "
+                    placeholder="Your Message"
                   ></textarea>
                 </div>
               </div>
 
-              <div class="mt-4 grid">
+              <div className="mt-4 grid">
                 <button
                   type="submit"
+                  disabled={loading}
                   class="inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-sm lg:text-base text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4"
                 >
-                  Send inquiry
+                  {loading ? <BounceSpinners /> : 'Send inquiry'}
                 </button>
               </div>
 
@@ -139,8 +211,8 @@ const ContactPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M0.975821 6.92249C0.43689 6.92249 -3.50468e-07 7.34222 -3.27835e-07 7.85999C-3.05203e-07 8.37775 0.43689 8.79749 0.975821 8.79749L12.7694 8.79748L7.60447 13.7596C7.22339 14.1257 7.22339 14.7193 7.60447 15.0854C7.98555 15.4515 8.60341 15.4515 8.98449 15.0854L15.6427 8.68862C16.1191 8.23098 16.1191 7.48899 15.6427 7.03134L8.98449 0.634573C8.60341 0.268455 7.98555 0.268456 7.60447 0.634573C7.22339 1.00069 7.22339 1.59428 7.60447 1.9604L12.7694 6.92248L0.975821 6.92249Z"
                       fill="currentColor"
                     />
@@ -180,8 +252,8 @@ const ContactPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M0.975821 6.92249C0.43689 6.92249 -3.50468e-07 7.34222 -3.27835e-07 7.85999C-3.05203e-07 8.37775 0.43689 8.79749 0.975821 8.79749L12.7694 8.79748L7.60447 13.7596C7.22339 14.1257 7.22339 14.7193 7.60447 15.0854C7.98555 15.4515 8.60341 15.4515 8.98449 15.0854L15.6427 8.68862C16.1191 8.23098 16.1191 7.48899 15.6427 7.03134L8.98449 0.634573C8.60341 0.268455 7.98555 0.268456 7.60447 0.634573C7.22339 1.00069 7.22339 1.59428 7.60447 1.9604L12.7694 6.92248L0.975821 6.92249Z"
                       fill="currentColor"
                     />

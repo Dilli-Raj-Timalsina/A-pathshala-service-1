@@ -1,9 +1,13 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import BounceSpinners from '../spinners/BounceSpinners';
+import axios from 'axios';
 // import { useCart } from '../contexts/cart';
 
 const CheckoutForm = () => {
   const getTotalPrice = 50000;
+  const router = useRouter();
   const items = [
     {
       id: 1,
@@ -42,8 +46,14 @@ const CheckoutForm = () => {
 
     // TODO: Implement eSewa payment integration and handle form submission
 
+    const amount = 1000; // Replace with the actual payment amount
+    const successUrl = 'http://localhost:3000/account-profile/purchase/success'; // Replace with your actual success URL
+    const failureUrl = 'http://localhost:3000/account-profile/purchase/failure'; // Replace with your actual failure URL
+
+    const paymentUrl = `https://uat.esewa.com.np/epay/main?amt=${amount}&pid=${'Esewa_Task_4'}&scd=EPAYTEST&su=${successUrl}&fu=${failureUrl}`;
+
+    router.push(paymentUrl);
     setIsSubmitting(false);
-    // clearCart();
   };
 
   return (
@@ -67,7 +77,6 @@ const CheckoutForm = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 className="border border-gray-300 rounded px-4 py-2 w-full"
-                required
               />
             </div>
             <div>
@@ -85,42 +94,6 @@ const CheckoutForm = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 className="border border-gray-300 rounded px-4 py-2 w-full"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="esewaId"
-                className="block text-gray-800 font-semibold mb-2"
-              >
-                eSewa ID
-              </label>
-              <input
-                type="text"
-                id="esewaId"
-                name="esewaId"
-                placeholder="Enter your eSewa ID"
-                value={formData.esewaId}
-                onChange={handleInputChange}
-                className="border border-gray-300 rounded px-4 py-2 w-full"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="couponCode"
-                className="block text-gray-800 font-semibold mb-2"
-              >
-                Coupon Code
-              </label>
-              <input
-                type="text"
-                id="couponCode"
-                name="couponCode"
-                placeholder="Enter your coupon code"
-                value={formData.couponCode}
-                onChange={handleInputChange}
-                className="border border-gray-300 rounded px-4 py-2 w-full"
               />
             </div>
           </div>
@@ -130,7 +103,7 @@ const CheckoutForm = () => {
               className="bg-indigo-500 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-600 disabled:opacity-50"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Submitting...' : 'Submit Payment'}
+              {isSubmitting ? <BounceSpinners /> : 'Submit Payment'}
             </button>
           </div>
           {errorMessage && (

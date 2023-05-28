@@ -12,11 +12,11 @@ const sora = Sora({
 });
 const CourseCard = ({ course }) => {
   return (
-    <div className="bg-white shadow-md border rounded-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+    <div className="bg-white w-1/2  rounded-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
       <img
         src={course.image}
         alt={course.title}
-        className="w-full h-48 object-cover"
+        className="w-full h-48 border border-blue-50 object-cover"
       />
       <div className="p-2">
         <div className="flex justify-between">

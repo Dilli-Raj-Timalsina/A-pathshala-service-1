@@ -1,21 +1,30 @@
 import Checkout from '@/app/components/courseConsume/Checkout';
-
+import CourseContent from '@/app/components/courseConsume/CourseContent';
 import CourseHeader from '@/app/components/courseConsume/CourseHeader';
 import CourseReview from '@/app/components/courseConsume/CourseReview';
-
-function CourseDetail() {
+import CourseTeachers from '@/app/components/courseConsume/CourseTeachers';
+import CourseBenefits from '@/app/components/courseConsume/CourseBenefits';
+const getCourse = async (id) => {
+  const res = await fetch(
+    `https://a-pathshala-service-2.onrender.com/api/v1/course/getCourseMetaData`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id: id }),
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+async function CourseDetail({ params }) {
+  const data = await getCourse('646cc45889de1369e32c43a7');
+  console.log(data);
   return (
-    <div className="grid grid-cols-3 ">
-      <div className="lg:ms-8 pb-8 col-span-2 px-4 sm:px-6 lg:px-8">
+    <div className="grid  grid-cols-3 ">
+      <div className="lg:ms-8 relative pb-8 col-span-2 px-4 sm:px-6 lg:px-8">
         <CourseHeader course={course} />
-        <div className="mb-8 border rounded-sm">
-          <img
-            src={course.image}
-            alt={course.title}
-            className=" w-3/4  h-96 object-cover
-          "
-          />
-        </div>
 
         <div className="flex">
           <div className="pr-4">
@@ -23,52 +32,66 @@ function CourseDetail() {
               <h3 className="text-2xl font-bold mb-4">Description</h3>
               <p>{course.description}</p>
             </div>
-            <div className="my-4" id="syllabus">
+            <CourseTeachers />
+            <CourseContent />
+            {/* <div className="my-4" id="syllabus">
               <h3 className="text-2xl font-bold mb-4">Syllabus</h3>
               <ul>
                 {course.syllabus.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </div>
+            </div> */}
             <div className="my-4" id="benefits">
-              <h3 className="text-2xl font-bold mb-4">Benefits</h3>
-              <ul>
-                {course.benefits.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              <CourseBenefits course={course} />
             </div>
             <CourseReview course={course} />
           </div>
         </div>
       </div>
-      <Checkout course={course} />
+      <div className="flex flex-col items-center">
+        <Checkout course={course} />
+      </div>
     </div>
   );
 }
 
 export default CourseDetail;
 const course = {
-  title: 'Introduction to Web Development',
-  rating: '4.5',
-  teacher: 'John Smith',
+  title: 'Ignite Your Career with a 15-Day Computer Science Bootcamp',
+  rating: '',
+  teachers: [
+    'Dilli Raj Timalsina',
+    'Prince Singh',
+    'Ayushman Khan',
+    'Bishworaj Poudel',
+    'Jiwan Bhattrai',
+    'Nishant Phuyal',
+    'Whole A+ Team',
+  ],
   image: '/a.png',
   description:
-    'In this course, you will learn the basics of web development, including HTML, CSS, and JavaScript. You will also learn how to create responsive web pages and how to use popular frameworks like React and Vue.',
-  syllabus: [
-    'Introduction to HTML',
-    'Introduction to CSS',
-    'Introduction to JavaScript',
-    'Responsive Web Design',
-    'React Basics',
-    'Vue Basics',
-  ],
+    'This comprehensive computer science and technology course covers various topics, including an introduction to the field, different domains of computer science, theory and foundational subjects, programming language selection, company creation and operation, startup types and stages, software development, competitive programming, JavaScript basics, open-source contribution, hiring processes, global opportunities, freelancing, networking, cybersecurity, software companies in Nepal, and more. Taught by experienced instructors and industry professionals, this course provides valuable insights and knowledge to help you navigate the world of computer science and technology.',
+
   benefits: [
-    'Learn the basics of web development',
-    'Create responsive web pages',
-    'Use popular frameworks like React and Vue',
-    'Get a solid foundation for a career in web development',
+    'Gain a solid foundation in computer science and technology',
+    'Explore different domains and career options within the field',
+    'Learn theory and foundational subjects essential for success',
+    'Choose the right programming language to start with',
+    'Understand the process of company creation and operation',
+    'Discover the differences between big tech giants and startups',
+    'Learn about software development and contribute to real projects',
+    'Explore competitive programming and improve coding skills',
+    'Master JavaScript basics and backend development',
+    'Contribute to open-source projects and build your portfolio',
+    'Gain insights into hiring processes and salary structures',
+    'Explore global opportunities and internships',
+    'Learn about freelancing and contract-based work',
+    'Discover networking and cybersecurity concepts',
+    'Understand the software industry in Nepal and its opportunities',
+    'Get valuable advice from industry professionals',
+    'Learn about the A+ Pathshala and its career-shaping opportunities',
+    'And much more!',
   ],
   reviews: [
     {
@@ -96,7 +119,7 @@ const course = {
         'I really enjoyed this course and learned a lot. The instructor was engaging and the content was well-organized. I appreciated the emphasis on responsive web design and the use of frameworks like React and Vue. Would definitely recommend!',
     },
   ],
-  price: '$199',
-  duration: '12 weeks',
+  price: '1000',
+  duration: '15 days',
   level: 'Beginner',
 };

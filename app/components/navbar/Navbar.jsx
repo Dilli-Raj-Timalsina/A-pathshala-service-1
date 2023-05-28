@@ -2,7 +2,6 @@
 import NavItems from './NavItems';
 import SearchBar from './SearchBar';
 import Logo from './Logo';
-import Image from 'next/image';
 import CallToAction from './CallToAction';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -50,18 +49,18 @@ export default function Navbar() {
 
   return (
     <nav
-      className="flex flex-col bg-white sm:flex-row justify-evenly items-center pt-4
+      className="flex flex-col pb-2 bg-white sm:flex-row justify-evenly items-center pt-4
  border-b-gray-200 border-2
     "
     >
       <Logo />
       {currentUrl != '/courses' && <SearchBar />}
-      <Link
+      {/* <Link
         href={'/become-teacher'}
         className="text-3xl px-2 rounded-md shadow-lg whitespace-nowrap font-bold text-primary-600"
       >
         Become Teacher
-      </Link>
+      </Link> */}
       <NavItems />
 
       {!isLoggedIn && <CallToAction />}
@@ -77,7 +76,7 @@ export default function Navbar() {
           </button>
           {toggleProfile ? (
             <div
-              className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200"
+              className="absolute right-0 mt-2 z-50 py-2 w-48 bg-white rounded-md shadow-lg  border border-gray-200"
               // onMouseEnter={() => setToggleProfile(true)}
               onMouseLeave={() => setToggleProfile(false)}
             >
@@ -101,7 +100,7 @@ export default function Navbar() {
                 <span className="text-gray-700 font-medium">{user.name}</span>
               </button>
               <Link
-                href="/account-profile"
+                href="/account-profile/mycourses"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
                 View Profile

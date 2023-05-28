@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Icon from './Icon';
 import JustLogo from '../data/Logo';
+import AplusLogo from './AplusLogo';
 
 function Logo() {
   return (
@@ -10,7 +11,7 @@ function Logo() {
           <JustLogo />
         </div>
         <div className="hidden md:flex">
-          <Icon />
+          <AplusLogo />
         </div>
       </Link>
     </div>

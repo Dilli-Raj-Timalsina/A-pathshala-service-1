@@ -4,11 +4,11 @@ const CourseHeader = ({ course }) => {
   return (
     <>
       <div className="w-full">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl pt-2 font-bold text-gray-900 mb-4">
           {course.title}
         </h1>
       </div>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex border-b pb-2 items-center justify-between mb-4">
         <div className="flex  items-center">
           <p className=" flex font-medium text-gray-900 mr-4">
             <svg

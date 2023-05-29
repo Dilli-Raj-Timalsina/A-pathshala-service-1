@@ -87,6 +87,8 @@ const CourseData = [
     level: 'Intermediate',
     duration: '8 weeks',
     price: 149,
+    image: 'https://placeimg.com/290/190/tech',
+    url: 'https://example.com/genetics',
     category: CATEGORIES[4],
   },
   {

@@ -52,7 +52,7 @@ const CategorySidebar = ({ setIsClosed }) => {
                 </svg>
               </button>
               {activeCategory === category.id && (
-                <ul className="mt-2 text-center">
+                <ul className="mt-2 text-start">
                   {category.subcategories.map((subcategory) => (
                     <li key={subcategory.id} className="mb-2">
                       <Link

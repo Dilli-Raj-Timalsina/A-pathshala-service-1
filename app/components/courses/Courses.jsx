@@ -123,7 +123,7 @@ import CategorySidebar from './CategorySideBar';
 const Courses = () => {
   const COURSES = CourseData;
   const [filteredCourses, setFilteredCourses] = useState(COURSES);
-  const [isClosed, setIsClosed] = useState(false);
+  const [isClosed, setIsClosed] = useState(true);
 
   console.log(filteredCourses);
   console.log('Showing filtered COurses' + filteredCourses);
